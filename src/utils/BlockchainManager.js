@@ -86,6 +86,26 @@ export default class BlockchainManager {
 
 
 
+    async  getUserBlockChainDetails(callback){
+
+
+        if(!this.data){
+            callback({})
+            return
+        }
+            console.log(this.data)
+        // console.log("conadd",this.data.contractAddress,"wallet",this.data.account)
+        callback({
+            contractAddress:this.data.contractAddress,
+            ethereumWallet:this.data.account
+        })
+     
+    }
+
+
+
+
+
 
     //Register
     // async register(id, price,callback) {
@@ -198,14 +218,5 @@ export default class BlockchainManager {
             });
     }
 
-
-
-
-    // async getUserInfo(callback) {
-    //    callback({
-    //        smartContactAddress:this.data.contractAddress,
-    //        name:""
-    //    })
-    // }
 
 }
