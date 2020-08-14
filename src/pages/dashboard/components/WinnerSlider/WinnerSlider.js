@@ -1,82 +1,201 @@
 import React, { useState } from 'react';
 import {
-  Carousel,
-  CarouselItem,
-  CarouselControl,
-  CarouselIndicators,
-  CarouselCaption,
-  UncontrolledCarousel
+  Media,
+  Container,
+  Row,
+  Col
 } from 'reactstrap';
+
+
 import Widget from '../../../../components/Widget/Widget';
+import Carousel from 'react-elastic-carousel'
 
-const items = [
-  {
-    src: 'data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22800%22%20height%3D%22400%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20400%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_15ba800aa1d%20text%20%7B%20fill%3A%23555%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A40pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_15ba800aa1d%22%3E%3Crect%20width%3D%22800%22%20height%3D%22400%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22285.921875%22%20y%3D%22218.3%22%3EFirst%20slide%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E',
-    altText: 'Slide 1',
-    caption: 'Slide 1'
-  },
-  {
-    src: 'data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22800%22%20height%3D%22400%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20400%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_15ba800aa20%20text%20%7B%20fill%3A%23444%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A40pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_15ba800aa20%22%3E%3Crect%20width%3D%22800%22%20height%3D%22400%22%20fill%3D%22%23666%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22247.3203125%22%20y%3D%22218.3%22%3ESecond%20slide%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E',
-    altText: 'Slide 2',
-    caption: 'Slide 2'
-  },
-  {
-    src: 'data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22800%22%20height%3D%22400%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20800%20400%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_15ba800aa21%20text%20%7B%20fill%3A%23333%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A40pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_15ba800aa21%22%3E%3Crect%20width%3D%22800%22%20height%3D%22400%22%20fill%3D%22%23555%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22277%22%20y%3D%22218.3%22%3EThird%20slide%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E',
-    altText: 'Slide 3',
-    caption: 'Slide 3'
-  }
-];
+const WinnerSlider = (props) => {
 
-const  WinnerSlider = (props) => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [animating, setAnimating] = useState(false);
 
-  const next = () => {
-    if (animating) return;
-    const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
-    setActiveIndex(nextIndex);
-  }
 
-  const previous = () => {
-    if (animating) return;
-    const nextIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
-    setActiveIndex(nextIndex);
-  }
-
-  const goToIndex = (newIndex) => {
-    if (animating) return;
-    setActiveIndex(newIndex);
-  }
-
-  const slides = items.map((item) => {
-    return (
-      <CarouselItem
-        onExiting={() => setAnimating(true)}
-        onExited={() => setAnimating(false)}
-        key={item.src}
-      >
-
-        <Widget>
-          {item.caption}</Widget>
-        {/* <img src={item.src} alt={item.altText} /> */}
-        {/* <CarouselCaption captionText={item.caption} captionHeader={item.caption} /> */}
-      </CarouselItem>
-    );
-  });
 
   return (
-    <UncontrolledCarousel
-      activeIndex={activeIndex}
-        interval={2000}
-        items={items}
-        autoPlay={true}
-        enableTouch={true}
-    >
-      <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
-      {slides}
-      <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
-      <CarouselControl direction="next" directionText="Next" onClickHandler={next} />
-    </UncontrolledCarousel>
+
+    <Carousel enableAutoPlay autoPlaySpeed={1500} itemsToShow={1}>
+
+
+
+      <Container>
+        <Row>
+
+          <div style={{
+            position: "relative",
+            paddingTop: "20px",
+            display: "inline-block",
+
+          }}>
+            <Row style={{
+              padding: "10px",
+              borderRadius:"10px",
+              // background: "radial-gradient(farthest-side ellipse at 10% 0, " + "#fdcb6e"
+              //   + " 20%, " + "#bf8415" + ")", 
+            }}>
+              <Col>
+                <img src="https://images.pexels.com/photos/20787/pexels-photo.jpg" style={{
+                  height: 80,
+                  width: 80,
+                  objectFit: "cover",
+                  borderRadius: "50%"
+                }} alt="" />
+
+
+
+
+              </Col>
+
+              <Col>
+                <h5 className="fw-bold">Shahzeb</h5>
+                <p
+                  className="fw-semi-bold"
+                  style={{
+                    backgroundColor: "#2c2f46",
+                    borderRadius: "5px",
+                    display: "block", paddingTop: "4px",
+                    paddingBottom: "4px",
+                    flex: "1"
+                  }}>
+                  33322323233233
+                  </p>
+              </Col>
+
+
+
+            </Row>
+
+            <h5 style={{
+              position: "absolute",
+              left: "-20px",
+              top: "10px",
+              marginLeft: "20px",
+              background: "radial-gradient(farthest-side ellipse at 10% 0, " + "#fdcb6e"
+                + " 20%, " + "#bf8415" + ")",
+              textAlign: "center",
+              borderRadius: "5px",
+              color: "white",
+              padding: "8px 6px 6px 6px",
+              fontWeight: "600",
+              fontSize: "18px}"
+            }}>1st</h5>
+
+          </div>
+
+
+
+
+          <Col>
+
+            <Row>
+
+
+            </Row>
+          </Col>
+
+        </Row>
+      </Container>
+
+
+
+
+
+
+
+
+
+
+
+      {/* <Container>
+        <Row>
+
+          <div style={{
+            position: "relative",
+            paddingTop: "20px",
+            display: "inline-block",
+            paddingRight:"20px"
+
+          }}>
+            <a href="#">
+
+              <Row style={{
+                marginLeft: "5px",
+                background: "radial-gradient(farthest-side ellipse at 10% 0, " + "#fdcb6e"
+                  + " 20%, " + "#bf8415" + ")", borderRadius: "10px 10px 10px 10px",
+                paddingBottom: "8px",
+                paddingTop: "20px",
+              }}>
+                <Col>
+                  <img src="https://images.pexels.com/photos/20787/pexels-photo.jpg" style={{
+                    height: 80,
+                    width: 80,
+                    objectFit: "cover",
+                    borderRadius: "10px"
+                  }} alt="" />
+
+
+
+
+                </Col>
+              
+                <Col>
+                <h5 className="fw-bold">Shahzeb</h5>
+                <p
+                    className="fw-semi-bold"
+                    style={{
+                      backgroundColor: "#2c2f46",
+                      borderRadius: "5px",
+                      display: "block", paddingTop: "4px",
+                      paddingBottom: "4px",
+                      flex: "1"
+                    }}>
+                    33322323233233
+                  </p>
+                </Col>
+              
+              
+              
+              </Row>
+
+              <h5 style={{
+                position: "absolute",
+                left: "-20px",
+                top: "10px",
+                marginLeft: "20px",
+                background: "radial-gradient(farthest-side ellipse at 10% 0, " + "#fdcb6e"
+                  + " 20%, " + "#bf8415" + ")",
+                textAlign: "center",
+                borderRadius: "5px",
+                color: "white",
+                padding: "8px 6px 6px 6px",
+                fontWeight: "600",
+                fontSize: "18px}"
+              }}>1st</h5>
+            </a>
+          </div>
+
+
+
+
+          <Col>
+
+            <Row>
+              {/* <h1>1st</h1>
+            <h1>1st</h1> */}
+
+      {/* 
+            </Row>
+          </Col>
+
+        </Row>
+      </Container> */}
+
+
+
+    </Carousel>
   );
 }
 

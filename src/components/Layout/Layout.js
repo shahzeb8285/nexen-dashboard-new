@@ -76,47 +76,32 @@ class Layout extends React.Component {
 
           <Container>
 
-            <Row>
-        
-              <Col lg={3} xs={6}>
+            <Row
+
+
+              style={{
+                display: "flex",
+                width: "100%"
+              }}>
+
+              <Col lg={3} xs={12} style={{
+                flex: 1
+
+              }}>
                 <Widget
-                  title={<h5> Affiliate Link </h5>}
+                  title={"Affiliate Link"}
                 >
 
-                  <p style={{
-                    backgroundColor: "#2c2f46",
-                    borderRadius: "5px",
-                    display: "block", paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
-                  }}>
-                    <span style={{
-                      flex: "1",
-                      paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
-                    }} className="fw-semi-bold">33322323233233</span>
-
-                    {/* <small><span className="circle bg-default text-white"><i className="fa fa-chevron-down" /></span></small> */}
-
-                  </p>
-                </Widget>
-
-              </Col>
-
-              <Col lg={3} xs={6}>
-                <Widget
-                  title={<h5> Smart Contract Address </h5>}
-                >
-
-                  <p style={{
-                    backgroundColor: "#2c2f46",
-                    borderRadius: "5px",
-                    display: "block", paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
-                  }}>
-                    <span style={{
-                      flex: "1",
-                      paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
-                    }} className="fw-semi-bold">33322323233233</span>
-
-                    {/* <small><span className="circle bg-default text-white"><i className="fa fa-chevron-down" /></span></small> */}
-
+                  <p
+                    className="fw-semi-bold"
+                    style={{
+                      backgroundColor: "#2c2f46",
+                      borderRadius: "5px",
+                      display: "block", paddingTop: "4px",
+                      paddingBottom: "4px", paddingLeft: "4px",
+                      flex: "1", overflow: "hidden"
+                    }}>
+                    33322323233233
                   </p>
                 </Widget>
 
@@ -124,66 +109,78 @@ class Layout extends React.Component {
 
 
 
+              <Col lg={3} xs={12} style={{
+                flex: 1
 
-
-              <Col lg={3} xs={4}>
+              }}>
                 <Widget
-                  title={<h5> Etherium Wallet </h5>}
+                  title={"Smart Contract Address"}
                 >
 
-                  <p style={{
-                    backgroundColor: "#2c2f46",
-                    borderRadius: "5px",
-                    display: "block", paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
-                  }}>
-                    <span style={{
-                      flex: "1",
-                      paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
-                    }} className="fw-semi-bold">33322323233233</span>
-
-                    {/* <small><span className="circle bg-default text-white"><i className="fa fa-chevron-down" /></span></small> */}
-
+                  <p
+                    className="fw-semi-bold"
+                    style={{
+                      backgroundColor: "#2c2f46",
+                      borderRadius: "5px",
+                      display: "block", paddingTop: "4px",
+                      paddingBottom: "4px", paddingLeft: "4px",
+                      flex: "1", overflow: "hidden"
+                    }}>
+                    33322323233233
                   </p>
                 </Widget>
+
               </Col>
-        
-              <Col lg={3} xs={3}>
+
+
+
+
+
+
+
+
+              <Col lg={3} xs={12} style={{
+                flex: 1
+
+              }}>
                 <Widget
-                  title={<h5> Etherium Wallet </h5>}
+                  title={"Etherium Wallet"}
                 >
 
-                  <p style={{
-                    backgroundColor: "#2c2f46",
-                    borderRadius: "5px",
-                    display: "block", paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
-                  }}>
-                    <span style={{
-                      flex: "1",
-                      paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
-                    }} className="fw-semi-bold">33322323233233</span>
-
-                    {/* <small><span className="circle bg-default text-white"><i className="fa fa-chevron-down" /></span></small> */}
-
+                  <p
+                    className="fw-semi-bold"
+                    style={{
+                      backgroundColor: "#2c2f46",
+                      borderRadius: "5px",
+                      display: "block", paddingTop: "4px",
+                      paddingBottom: "4px", paddingLeft: "4px",
+                      flex: "1", overflow: "hidden"
+                    }}>
+                    33322323233233
                   </p>
                 </Widget>
-              </Col>
-        
 
-      
-              {/* <Col lg={1} xs={6}/> */}
-               
-        
-              
-        
-        
-        
-        
+              </Col>
+
+
+
+              {/* <Col lg={3} xs={6} style={{
+                flex: 1
+
+              }} />
+ */}
+
+
+
+
+
+
             </Row>
 
 
 
 
-        
+
 
           </Container>
 

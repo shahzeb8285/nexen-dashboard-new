@@ -704,17 +704,17 @@ class Dashboard extends React.Component {
 
 
 
-          <Row style={{marginTop:"20px",marginBottom:"20px"}}>
+          <Row style={{ marginTop: "20px", marginBottom: "20px" }}>
 
 
-            <Col lg={7} xs={6}>
+            <Col lg={7} xs={12}>
 
 
               <Row>
 
 
 
-                <Col lg={{ size: 4 }} xs={6}>
+                <Col lg={{ size: 4 ,offset:0}} xs={6} style={{paddingTop:5}}>
                   <InfoTile
                     primaryTitle={"Direct Income"}
                     secondaryTitle={"Total Direct"}
@@ -726,10 +726,7 @@ class Dashboard extends React.Component {
 
                   />
                 </Col>
-
-
-
-                <Col lg={{ size: 4 }} xs={6}>
+                <Col lg={{ size: 4,offset:0 }} xs={6}  style={{paddingTop:5}}>
                   <InfoTile
 
                     primaryTitle={"Reward Income"}
@@ -747,7 +744,9 @@ class Dashboard extends React.Component {
 
                 </Col>
 
-                <Col lg={{ size: 4 }} xs={6}>
+
+
+                <Col lg={{ size: 4,offset:0 }} xs={6}  style={{paddingTop:5}}>
                   <InfoTile
 
                     primaryTitle={"Level Income"}
@@ -762,45 +761,32 @@ class Dashboard extends React.Component {
 
 
                 </Col>
-
-
-               
-              </Row>
-
-
-
-
-              <Row style={{marginTop:"10px"}}>
-
-
-
-
-                <Col lg={{ size: 4 }} xs={6}>
+                <Col lg={{ size: 4 ,offset:0}} xs={6}  style={{paddingTop:5}}>
 
                   <InfoTile
 
-                    primaryTitle={"Level Income"}
-                    secondaryTitle={"Total Team"}
-                    primaryAmount={500}
-                    secondaryAmount={1000}
-                    bgStartColor={"#fdcb6e"}
-                    bgEndColor={"#bf8415"}
-
-
-                  />
-
-
-
-
-
-                </Col>
-
-
-                <Col lg={{ size: 4 }} xs={6}>
-                  <InfoTile
-
-                    primaryTitle={"Recycle Fund"}
+                    primaryTitle={"Recycle Income"}
                     secondaryTitle={"Total Recycle"}
+                    primaryAmount={500}
+                    secondaryAmount={1000}
+                    bgStartColor={"#fdcb6e"}
+                    bgEndColor={"#bf8415"}
+
+
+                  />
+
+
+
+
+
+                </Col>
+
+
+                <Col lg={{ size: 4,offset:0 }} xs={6} style={{paddingTop:5}}>
+                  <InfoTile
+
+                    primaryTitle={"Level Fund"}
+                    secondaryTitle={"Level Bought"}
                     primaryAmount={500}
                     secondaryAmount={1000}
                     bgStartColor={"#961516"}
@@ -811,7 +797,7 @@ class Dashboard extends React.Component {
 
                 </Col>
 
-                <Col lg={{ size: 4 }} xs={6}>
+                <Col lg={{ size: 4,offset:0}} xs={6}  style={{paddingTop:5}}>
                   <InfoTile
 
                     primaryTitle={"Recycle Fund"}
@@ -827,20 +813,31 @@ class Dashboard extends React.Component {
                 </Col>
 
 
+
               </Row>
+
+
+
 
 
             </Col>
 
 
-            <Col lg={5} xs={6}>
+            <Col lg={5} xs={12}>
 
               <Widget
 
-                title={""}
+                title={<h3>Today's <span className="fw-semi-bold">Winners</span></h3>
+                }
               >
-                <h6>Today's <span className="fw-semi-bold">Winners</span></h6>
-                <WinnerSlider />
+                <Col>
+
+                  <WinnerSlider />
+
+
+
+                </Col>
+
               </Widget>
 
 
@@ -889,7 +886,7 @@ class Dashboard extends React.Component {
 
           </Row>
 
-        
+
 
 
 
