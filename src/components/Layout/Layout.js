@@ -26,8 +26,8 @@ class Layout extends React.Component {
   async componentDidMount(){
     const instance = await BlockchainManager.getInstance();
     const data = await instance.data;
-    console.log(d);
-    const contractaddress = await d.contractAddress;
+    console.log(data);
+    const contractaddress = await data.contractAddress;
     this.setState({
       contractAddress : contractaddress
     })

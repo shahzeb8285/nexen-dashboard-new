@@ -16,9 +16,8 @@ class Dashboard extends React.Component {
 
   
   async componentDidMount(){
-    const instance = await BlockchainManager.getInstance();
-    const data = await instance.data;
-    const income = await instance.getUsersIncomes(1, (isError, data) => {
+    // const data = await instance.data;
+    BlockchainManager.getInstance().getUsersIncomes(1, (isError, data) => {
       console.log("===============");
       console.log(data,isError);
 
@@ -39,7 +38,6 @@ class Dashboard extends React.Component {
       }
     });
    
-    console.log(this.state.directIncome);
    }
  
    constructor(props) {
