@@ -5,6 +5,7 @@ import uuidv4 from 'uuid/v4';
 import s from './InfoTile.module.scss';
 
 class InfoTile extends React.Component {
+
   static propTypes = {
     title: PropTypes.node,
     className: PropTypes.string,

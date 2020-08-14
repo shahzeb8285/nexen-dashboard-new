@@ -7,29 +7,56 @@ import WinnerSlider from './components/WinnerSlider/WinnerSlider'
 import Calendar from './components/calendar/Calendar';
 import s from './Dashboard.module.scss';
 import Particles from 'react-particles-js';
-
-
+import BlockchainManager from '../../utils/BlockchainManager';
 
 
 
 
 class Dashboard extends React.Component {
 
-  constructor(props) {
+  
+  async componentDidMount(){
+    const instance = await BlockchainManager.getInstance();
+    const data = await instance.data;
+    const income = await instance.getUsersIncomes(1, (isError, data) => {
+      console.log("===============");
+      console.log(data,isError);
+
+      if (isError) {
+
+        console.log("error");
+        //handle errors
+        //TODO implement error notification system
+      } else {
+        this.setState({
+          directIncome: data.directIncome,
+          recycleIncome: data.recycleIncome,
+          levelIncome: data.levelIncome,
+          recycleFund: data.recycleFund,
+          levelFund: data.levelFund,
+          rewardIncome : data.rewardIncome
+        })
+      }
+    });
+   
+    console.log(this.state.directIncome);
+   }
+ 
+   constructor(props) {
     super(props);
     this.state = {
       graph: null,
       checkedArr: [false, false, false],
-      cd: this.getChartData()
+      cd: this.getChartData(),
+      directIncome:0,
+      recycleIncome: 0,
+      levelIncome: 0,
+      recycleFund: 0,
+      levelFund: 0,
+      rewardIncome : 0
     };
     this.checkTable = this.checkTable.bind(this);
   }
-
-
-  componentDidMount() {
-    // this.initChartData()
-  }
-
   checkTable(id) {
     let arr = [];
     if (id === 0) {
@@ -718,11 +745,11 @@ class Dashboard extends React.Component {
                   <InfoTile
                     primaryTitle={"Direct Income"}
                     secondaryTitle={"Total Direct"}
-                    primaryAmount={500}
+                    primaryAmount={this.state.directIncome}
                     bgStartColor={"#00b894"}
                     bgEndColor={"#018067"}
 
-                    secondaryAmount={1000}
+                    secondaryAmount={500}
 
                   />
                 </Col>
@@ -734,11 +761,11 @@ class Dashboard extends React.Component {
 
                     primaryTitle={"Reward Income"}
                     secondaryTitle={"Total Win"}
-                    primaryAmount={500}
+                    primaryAmount={this.state.rewardIncome}
                     bgStartColor={"#0984e3"}
                     bgEndColor={"#06508a"}
 
-                    secondaryAmount={1000}
+                    secondaryAmount={4}
 
                   />
 
@@ -752,7 +779,7 @@ class Dashboard extends React.Component {
 
                     primaryTitle={"Level Income"}
                     secondaryTitle={"Total Team"}
-                    primaryAmount={500}
+                    primaryAmount={this.state.levelIncome}
                     secondaryAmount={1000}
                     bgStartColor={"#fdcb6e"}
                     bgEndColor={"#bf8415"}
@@ -779,9 +806,9 @@ class Dashboard extends React.Component {
 
                   <InfoTile
 
-                    primaryTitle={"Level Income"}
+                    primaryTitle={"Level Fund"}
                     secondaryTitle={"Total Team"}
-                    primaryAmount={500}
+                    primaryAmount={this.state.levelFund}
                     secondaryAmount={1000}
                     bgStartColor={"#fdcb6e"}
                     bgEndColor={"#bf8415"}
@@ -799,9 +826,9 @@ class Dashboard extends React.Component {
                 <Col lg={{ size: 4 }} xs={6}>
                   <InfoTile
 
-                    primaryTitle={"Recycle Fund"}
+                    primaryTitle={"Recycle Income"}
                     secondaryTitle={"Total Recycle"}
-                    primaryAmount={500}
+                    primaryAmount={this.state.recycleIncome}
                     secondaryAmount={1000}
                     bgStartColor={"#961516"}
                     bgEndColor={"#d63031"}
@@ -816,7 +843,7 @@ class Dashboard extends React.Component {
 
                     primaryTitle={"Recycle Fund"}
                     secondaryTitle={"Total Recycle"}
-                    primaryAmount={500}
+                    primaryAmount={this.state.recycleFund}
                     secondaryAmount={1000}
                     bgStartColor={"#d35400"}
                     bgEndColor={"#a1511b"}

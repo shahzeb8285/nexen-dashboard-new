@@ -18,10 +18,21 @@ import Header from '../Header';
 import Sidebar from '../Sidebar';
 import s from './Layout.module.scss';
 import WinnerSlider from "../../components/WinnerSlider/WinnerSlider";
-
+import BlockchainManager from '../../utils/BlockchainManager';
 
 
 class Layout extends React.Component {
+  
+  async componentDidMount(){
+    const instance = await BlockchainManager.getInstance();
+    const data = await instance.data;
+    console.log(d);
+    const contractaddress = await d.contractAddress;
+    this.setState({
+      contractAddress : contractaddress
+    })
+    console.log(this.state.contractAddress);
+   }
   static propTypes = {
     sidebarStatic: PropTypes.bool,
     sidebarOpened: PropTypes.bool,
@@ -34,7 +45,10 @@ class Layout extends React.Component {
   };
   constructor(props) {
     super(props);
-
+    this.state=({
+      contractAddress:"loading",
+      ethereumWallet:"loading"
+    })
     this.handleSwipe = this.handleSwipe.bind(this);
   }
 
@@ -91,7 +105,7 @@ class Layout extends React.Component {
                     <span style={{
                       flex: "1",
                       paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
-                    }} className="fw-semi-bold">33322323233233</span>
+                    }} className="fw-semi-bold">{33322323233233}</span>
 
                     {/* <small><span className="circle bg-default text-white"><i className="fa fa-chevron-down" /></span></small> */}
 
@@ -113,7 +127,7 @@ class Layout extends React.Component {
                     <span style={{
                       flex: "1",
                       paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
-                    }} className="fw-semi-bold">33322323233233</span>
+                    }} className="fw-semi-bold">{this.state.contractAddress}</span>
 
                     {/* <small><span className="circle bg-default text-white"><i className="fa fa-chevron-down" /></span></small> */}
 
@@ -139,7 +153,7 @@ class Layout extends React.Component {
                     <span style={{
                       flex: "1",
                       paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
-                    }} className="fw-semi-bold">33322323233233</span>
+                    }} className="fw-semi-bold">{this.state.ethereumWallet}</span>
 
                     {/* <small><span className="circle bg-default text-white"><i className="fa fa-chevron-down" /></span></small> */}
 
