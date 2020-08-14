@@ -22,16 +22,40 @@ import BlockchainManager from '../../utils/BlockchainManager';
 
 
 class Layout extends React.Component {
-  
+   constructor(props) {
+    super(props);
+    this.state=({
+      contractAddress:"0x",
+      ethereumWallet:"0x"
+    })
+    this.handleSwipe = this.handleSwipe.bind(this);
+  }
+
   async componentDidMount(){
     const instance = await BlockchainManager.getInstance();
+<<<<<<< HEAD
     const data = await instance.data;
     console.log(data);
     const contractaddress = await data.contractAddress;
     this.setState({
       contractAddress : contractaddress
+=======
+    // console.log(instance);
+    // const data = instance.data;
+    // console.log("=====================",data);
+    // const contractaddress = data.contractAddress;
+    // console.log(contractaddress);
+    // console.log(typeof contractaddress,"contractaddresstype");
+    // this.setState({
+    //   contractAddress : contractaddress
+    // })
+
+
+    instance.getUserBlockChainDetails((data)=>{
+      console.log("JSON",data);
+      this.setState({contractAddress:data.contractAddress,ethereumWallet:data.ethereumWallet})
+>>>>>>> 0847d31ba69e95d6e972f24f5694c2a1b38485b9
     })
-    console.log(this.state.contractAddress);
    }
   static propTypes = {
     sidebarStatic: PropTypes.bool,
@@ -43,15 +67,7 @@ class Layout extends React.Component {
     sidebarStatic: false,
     sidebarOpened: false,
   };
-  constructor(props) {
-    super(props);
-    this.state=({
-      contractAddress:"loading",
-      ethereumWallet:"loading"
-    })
-    this.handleSwipe = this.handleSwipe.bind(this);
-  }
-
+ 
 
   handleSwipe(e) {
     if ('ontouchstart' in window) {
