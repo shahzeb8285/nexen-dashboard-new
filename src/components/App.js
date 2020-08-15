@@ -4,7 +4,7 @@ import { Switch, Route, Redirect } from 'react-router';
 import { HashRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import Particles from 'react-particles-js';
-
+// import BlockchainManager from '../utils/BlockchainManager';
 /* eslint-disable */
 import ErrorPage from '../pages/error';
 /* eslint-enable */
@@ -29,13 +29,21 @@ const PrivateRoute = ({dispatch, component, ...rest }) => {
 const CloseButton = ({closeToast}) => <i onClick={closeToast} className="la la-close notifications-close"/>
 
 class App extends React.PureComponent {
+  async componentDidMount(){
+  //  const x = await BlockchainManager.getInstance();
+  //  const u = await x.data;
+  //  const v = await u.contractAddress;
+    // console.log(v);
+  }
+  
   render() {
+    
     return (
         <>
         <div>
         <Particles style={{
           position: "absolute",
-          "top": 0, "left": 0, "z-index": 1
+          "top": 0, "left": 0, zIndex: 1
         }}
         
         
