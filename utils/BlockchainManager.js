@@ -7,10 +7,10 @@ export default class BlockchainManager {
     data = {};
 
 
-    static async getInstance() {
+    static  getInstance() {
         if (BlockchainManager.myInstance == null) {
             BlockchainManager.myInstance = new BlockchainManager();
-            await BlockchainManager.myInstance.init();
+             BlockchainManager.myInstance.init();
         }
 
         return this.myInstance;
@@ -191,6 +191,9 @@ export default class BlockchainManager {
     // }
 
     async getUsersIncomes(referalId,callback) {
+
+
+
         const web3 = window.web3;
         this.data.mlm.methods.getUsersIncomes(referalId).call().then((user)=> {
             // console.log(user);

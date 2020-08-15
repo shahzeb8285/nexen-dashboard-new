@@ -14,6 +14,7 @@ contract MLM {
         uint256 id;
         address inviter;
         uint256 totalReferals;
+        uint256 totalWins;
         uint256 totalRecycles;
         uint256 dailyReferrals;
         uint256 levelsPurchased;
@@ -29,29 +30,22 @@ contract MLM {
         uint256 rewardIncome;
         uint256 levelIncome;
         uint256 recycleIncome;
-        uint256 recycleFund;
-        uint256 levelFund;
         uint256 upgradeIncome;
         uint256 levelRewardIncome;
     }
  
-    struct UserInfoCounts{
-        uint256 recycleCounts;
-        uint256 rewardCount;
-        uint256 levelSize;
-        
+    struct UserFunds{
+        uint256 recycleFund;
+        uint256 levelFund;
     }
-    // struct UserLevels{
-    //     uint256 level1;
-    //     uint256 level2;
-    //     uint256 level3;
-    // }
+
 
     uint256[] public levels;
    
     mapping(address => User) public users;
     mapping(address => UserIncomes) public usersIncomes;
-    mapping(address => UserLevels) public userLevels;
+    mapping(address => UserFunds) public usersFund;
+    // mapping(address => UserLevels) public userLevels;
 
     mapping(uint256 => address) public users_ids;
     
@@ -111,8 +105,8 @@ contract MLM {
 
         uint256 referalMoney = (levels[0] * 80) / 100;
         usersIncomes[_inviter].directIncome += (referalMoney - (referalMoney * 20) / 100);
-        usersIncomes[_inviter].recycleFund += (referalMoney * 10) / 100;
-        usersIncomes[_inviter].levelFund += (referalMoney * 10) / 100;
+        usersFund[_inviter].recycleFund += (referalMoney * 10) / 100;
+        usersFund[_inviter].levelFund += (referalMoney * 10) / 100;
         
         // if(usersIncomes[_inviter].recycleFund>=levels[0])
         // recycleId(_inviter);
@@ -172,8 +166,8 @@ contract MLM {
         uint256 upgradeAmount = (levels[_level] * 20) / 100;
         address _inviter = users[msg.sender].inviter;
         usersIncomes[_inviter].levelIncome += (upgradeAmount -(20 * upgradeAmount) / 100);
-        usersIncomes[_inviter].recycleFund +=(10 * upgradeAmount) /100;
-        usersIncomes[_inviter].levelFund += (10 * upgradeAmount) / 100;
+        usersFund[_inviter].recycleFund +=(10 * upgradeAmount) /100;
+        usersFund[_inviter].levelFund += (10 * upgradeAmount) / 100;
         // if(usersIncomes[_inviter].recycleFund>=levels[0])
         // recycleId(_inviter);
         
@@ -198,13 +192,13 @@ contract MLM {
 
         uint256 _level = users[_user].levelsPurchased + 1;
         require(_level > 0 && _level <= 10, "Incorrect level");
-        require( usersIncomes[_user].levelFund >= levels[_level],"Incorrect Value");
+        require( usersFund[_user].levelFund >= levels[_level],"Incorrect Value");
      
         uint256 upgradeAmount = (levels[_level] * 20) / 100;
         address _inviter= users[msg.sender].inviter;
         usersIncomes[_inviter].levelIncome += (upgradeAmount -(20 * upgradeAmount) /100);
-        usersIncomes[_inviter].recycleFund +=(10 * upgradeAmount) /100;
-        usersIncomes[_inviter].levelFund +=(10 * upgradeAmount) /100;
+        usersFund[_inviter].recycleFund +=(10 * upgradeAmount) /100;
+        usersFund[_inviter].levelFund +=(10 * upgradeAmount) /100;
         
         // if(usersIncomes[_inviter].recycleFund>=levels[0])
         // recycleId(_inviter);
@@ -217,7 +211,7 @@ contract MLM {
         );
 
         totalAmountDistributed += (upgradeAmount - (20 * upgradeAmount) / 100);
-        usersIncomes[_user].levelFund -= levels[_level];
+        usersFund[_user].levelFund -= levels[_level];
         users[_user].levelsPurchased += 1;
 
          //level distribution is done
@@ -227,16 +221,16 @@ contract MLM {
     }
 
     function recycleId(address _user) public {
-        if(usersIncomes[_user].recycleFund >= levels[0]){
-            usersIncomes[_user].recycleFund -= levels[0];
+        if(usersFund[_user].recycleFund >= levels[0]){
+            usersFund[_user].recycleFund -= levels[0];
             users[_user].totalRecycles+=1;
 
             uint256 referalMoney = (levels[0] * 80) / 100;
 
             address _inviter = users[_user].inviter;
             usersIncomes[_inviter].recycleIncome += (referalMoney -(referalMoney * 20) /100);
-            usersIncomes[_inviter].recycleFund += (referalMoney * 10) / 100;
-            usersIncomes[_inviter].levelFund += (referalMoney * 10) / 100;
+            usersFund[_inviter].recycleFund += (referalMoney * 10) / 100;
+            usersFund[_inviter].levelFund += (referalMoney * 10) / 100;
 
             address(uint256(_inviter)).transfer(referalMoney - (referalMoney * 20) / 100);
             totalAmountDistributed += (referalMoney -(referalMoney * 20) /100);
@@ -253,39 +247,43 @@ contract MLM {
     }
 
     function distributeReward(
-        address _winner1,
-        address _winner2,
-        address _winner3
+        uint256 _winner1,
+        uint256 _winner2,
+        uint256 _winner3
     ) public {
      
         uint256 first = (50 * rewardWallet) / 100;
         uint256 second = (30 * rewardWallet) / 100;
         uint256 third = (20 * rewardWallet) / 100;
 
-        usersIncomes[_winner1].rewardIncome += (first - (20 * first) / 100);
-        usersIncomes[_winner2].rewardIncome += (second - (20 * second) / 100);
-        usersIncomes[_winner3].rewardIncome += (third - (20 * third) / 100);
+        usersIncomes[users_ids[_winner1]].rewardIncome += (first - (20 * first) / 100);
+        usersIncomes[users_ids[_winner2]].rewardIncome += (second - (20 * second) / 100);
+        usersIncomes[users_ids[_winner3]].rewardIncome += (third - (20 * third) / 100);
 
-        address(uint256(_winner1)).transfer(usersIncomes[_winner1].rewardIncome);
-        address(uint256(_winner2)).transfer(usersIncomes[_winner2].rewardIncome);
-        address(uint256(_winner3)).transfer(usersIncomes[_winner3].rewardIncome);
+        address(uint256(users_ids[_winner1])).transfer(usersIncomes[users_ids[_winner1]].rewardIncome);
+        address(uint256(users_ids[_winner2])).transfer(usersIncomes[users_ids[_winner2]].rewardIncome);
+        address(uint256(users_ids[_winner3])).transfer(usersIncomes[users_ids[_winner3]].rewardIncome);
 
-        totalAmountDistributed += (usersIncomes[_winner1].rewardIncome + 
-        usersIncomes[_winner2].rewardIncome + usersIncomes[_winner3].rewardIncome);
+        users[users_ids[_winner1]].totalWins += 1;
+        users[users_ids[_winner2]].totalWins += 1;
+        users[users_ids[_winner3]].totalWins += 1;
+
+        totalAmountDistributed += (usersIncomes[users_ids[_winner1]].rewardIncome + 
+        usersIncomes[users_ids[_winner2]].rewardIncome + usersIncomes[users_ids[_winner3]].rewardIncome);
 
         rewardWallet = 0;
         
-        address _inviter1 = users[_winner1].inviter;
-        address _inviter2 = users[_winner2].inviter;
-        address _inviter3 = users[_winner3].inviter;
+        address _inviter1 = users[users_ids[_winner1]].inviter;
+        address _inviter2 = users[users_ids[_winner2]].inviter;
+        address _inviter3 = users[users_ids[_winner3]].inviter;
         
-        usersIncomes[_inviter1].recycleFund += (10 * first) / 100;
-        usersIncomes[_inviter2].recycleFund += (10 * second) / 100;
-        usersIncomes[_inviter3].recycleFund += (10 * third) / 100;
+        usersFund[_inviter1].recycleFund += (10 * first) / 100;
+        usersFund[_inviter2].recycleFund += (10 * second) / 100;
+        usersFund[_inviter3].recycleFund += (10 * third) / 100;
 
-        usersIncomes[_inviter1].levelFund += (10 * first) / 100;
-        usersIncomes[_inviter2].levelFund += (10 * second) / 100;
-        usersIncomes[_inviter3].levelFund += (10 * third) / 100;
+        usersFund[_inviter1].levelFund += (10 * first) / 100;
+        usersFund[_inviter2].levelFund += (10 * second) / 100;
+        usersFund[_inviter3].levelFund += (10 * third) / 100;
 
         // if(usersIncomes[_inviter1].recycleFund>=levels[0])
         // recycleId(_inviter2);
@@ -296,13 +294,13 @@ contract MLM {
         // if(usersIncomes[_inviter2].recycleFund>=levels[0])
         // recycleId(_inviter2);
         
-        if((usersIncomes[_inviter2].levelFund >= levels[users[_inviter2].levelsPurchased+1]) && (users[_inviter2].levelsPurchased < 10))
+        if((usersFund[_inviter2].levelFund >= levels[users[_inviter2].levelsPurchased+1]) && (users[_inviter2].levelsPurchased < 10))
         autoBuyLevel(_inviter2);
 
         // if(usersIncomes[_inviter3].recycleFund>=levels[0])
         // recycleId(_inviter3);
         
-        if((usersIncomes[_inviter3].levelFund >= levels[users[_inviter3].levelsPurchased+1]) && (users[_inviter3].levelsPurchased < 10))
+        if((usersFund[_inviter3].levelFund >= levels[users[_inviter3].levelsPurchased+1]) && (users[_inviter3].levelsPurchased < 10))
         autoBuyLevel(_inviter3);
 
     }
@@ -348,8 +346,8 @@ contract MLM {
             else if(users[uplines[i]].levelsPurchased>=(i+1)){
                 usersIncomes[uplines[i]].upgradeIncome += price;
 
-                usersIncomes[uplines[i]].recycleFund += (10*x)/100;
-                usersIncomes[uplines[i]].levelFund += (10*x)/100;
+                usersFund[uplines[i]].recycleFund += (10*x)/100;
+                usersFund[uplines[i]].levelFund += (10*x)/100;
                 
                 // if(usersIncomes[users_ids[uplines[i]]].recycleFund>=levels[0])
                 // recycleId(users[users_ids[uplines[i]]].inviter);
@@ -396,9 +394,9 @@ contract MLM {
         address inviter,
         uint256 totalReferals,
         uint256 totalRecycles,
+        uint256 totalWins,
         uint256 dailyReferrals,
         uint256 levelsPurchased,
-        uint256 upline,
         uint256 loss
         )
     {
@@ -407,43 +405,49 @@ contract MLM {
             user.inviter,
             user.totalReferals,
             user.totalRecycles,
+            user.totalWins,
             user.dailyReferrals,
             user.levelsPurchased,
-            user.upline,
             user.loss
         );
     }
     
     function getUsersIncomes(uint256 _id) public view returns (
         uint256 directIncome,
-        // uint256 rewardIncome,
+        uint256 rewardIncome,
         uint256 levelIncome,
         uint256 recycleIncome,
-        uint256 recycleFund,
-        // uint256 levelFund,
         uint256 upgradeIncome,
         uint256 levelRewardIncome
         )
         {
         return (
             usersIncomes[users_ids[_id]].directIncome,
-            // usersIncomes[users_ids[_id]].rewardIncome,
+            usersIncomes[users_ids[_id]].rewardIncome,
             usersIncomes[users_ids[_id]].levelIncome,
             usersIncomes[users_ids[_id]].recycleIncome,
-            usersIncomes[users_ids[_id]].recycleFund,
-            // usersIncomes[users_ids[_id]].levelFund,
             usersIncomes[users_ids[_id]].upgradeIncome,
             usersIncomes[users_ids[_id]].levelRewardIncome
             );
+    }
+
+    function getUsersFunds(uint256 _id) public view returns(
+        uint256 recycleFund,
+        uint256 levelFund
+    ){
+        return (
+            usersFund[users_ids[_id]].recycleFund,
+            usersFund[users_ids[_id]].levelFund
+        );
     }
     function withDrawlevelFund() public {
         require(users[msg.sender].levelsPurchased >= 10, "you cannot withdraw amount");
 
         address(uint256(msg.sender)).transfer(
-            usersIncomes[msg.sender].levelFund
+            usersFund[msg.sender].levelFund
         );
 
-        usersIncomes[msg.sender].levelFund = 0;
+        usersFund[msg.sender].levelFund = 0;
     }
    
     function withdrawDistributionWallet() public{
