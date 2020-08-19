@@ -9,6 +9,9 @@ import { logoutUser } from '../../actions/user';
 import logo from '../../images/logo.png';
 import LinksGroup from './LinksGroup';
 import s from './Sidebar.module.scss';
+import { Col, Container, Row } from 'reactstrap';
+import Widget from '../../components/Widget';
+import avatar from '../../images/people/a5.jpg';
 
 
 class Sidebar extends React.Component {
@@ -76,8 +79,22 @@ class Sidebar extends React.Component {
 
 
                 </header> */}
+
+
+
                 <ul className={s.nav}>
-                <img src={logo} className={"LinksGroup_headerLink__vI_3u "} style={{width: "80%", height: 'auto',}} alt="Logo" />
+                    <img src={logo} className={"LinksGroup_headerLink__vI_3u .logo"}
+                        style={{ padding: "25px", width: "80%", height: 'auto', 
+                        animation: `spin ${8}s linear infinite` }} alt="Logo" />
+
+
+                    <div  style={{marginLeft:20}}>
+                        <span className={`${s.avatar} rounded-circle thumb-sm mr-2`}>
+                            <img src={avatar} alt="..." style={{borderRadius:"50%"}} />
+                        </span>
+                        <span className={`small ${s.accountCheck}`}>Binod</span>
+                    </div>
+
 
                     <LinksGroup
                         onActiveSidebarItemChange={activeItem => this.props.dispatch(changeActiveSidebarItem(activeItem))}
@@ -89,6 +106,7 @@ class Sidebar extends React.Component {
                         index="main"
                     />
                     {/* <h5 className={[s.navTitle, s.groupTitle].join(' ')}>TEMPLATE</h5> */}
+
                     <LinksGroup
                         onActiveSidebarItemChange={activeItem => this.props.dispatch(changeActiveSidebarItem(activeItem))}
                         activeItem={this.props.activeItem}
@@ -109,7 +127,75 @@ class Sidebar extends React.Component {
                     />
 
 
-<LinksGroup
+
+                    <hr className="solid" />
+
+
+                  
+
+
+                    <hr className="solid" />
+
+
+
+
+
+
+
+                    <Widget
+                        title={"Affiliate Link"}
+                    >
+
+                        <p className="fw-semi-bold tile-hover" onClick={(f) => {
+                            console.log("clickedddddd", f);
+                            this.copyToClipboard("Affiliate Link", "https://nexen.live/0")
+
+
+                        }}>
+
+                            https://nexen.live/0
+      </p>
+                    </Widget>
+
+                    <Widget
+                        title={"Smart Contract Address"}
+                    >
+
+                        <p className="fw-semi-bold tile-hover" onClick={(f) => {
+                            console.log("clickedddddd", f);
+                            this.copyToClipboard("Smart Contract Address", this.props.user.contractAddress)
+
+
+                        }}>
+
+                            {this.props.user ? this.props.user.contractAddress : "0000000000"}
+
+                        </p>
+                    </Widget>
+
+                    <Widget
+
+                        title={"Etherium Wallet"}
+                    >
+
+                        <p className="fw-semi-bold tile-hover" onClick={(f) => {
+                            this.copyToClipboard("Etherium Wallet Address", this.props.user.walletAddress)
+
+
+                        }}>
+
+                            {this.props.user ? this.props.user.walletAddress : "0000000000"}
+                        </p>
+                    </Widget>
+
+
+
+
+
+
+
+
+                    {/* <LinksGroup
                         onActiveSidebarItemChange={t => this.props.dispatch(changeActiveSidebarItem(t))}
                         activeItem={this.props.activeItem}
                         header="Help"
@@ -128,8 +214,8 @@ class Sidebar extends React.Component {
                         iconName="flaticon-internet"
                         link="/app/icons"
                         index="tables"
-                    />
-                    <LinksGroup
+                    /> */}
+                    {/* <LinksGroup
                         onActiveSidebarItemChange={activeItem => this.props.dispatch(changeActiveSidebarItem(activeItem))}
                         activeItem={this.props.activeItem}
                         header="Notifications"
@@ -137,7 +223,7 @@ class Sidebar extends React.Component {
                         iconName="flaticon-layers"
                         link="/app/notifications"
                         index="ui"
-                    />
+                    /> */}
                     {/* <LinksGroup
                         onActiveSidebarItemChange={activeItem => this.props.dispatch(changeActiveSidebarItem(activeItem))}
                         activeItem={this.props.activeItem}
@@ -165,7 +251,7 @@ class Sidebar extends React.Component {
                 </h5> */}
 
 
-           
+
                 {/* <ul className={s.sidebarLabels}>
                     <li>
                         <a href="#">
@@ -191,10 +277,10 @@ class Sidebar extends React.Component {
                 </h5>
               
                */}
-              
-              
-              
-              
+
+
+
+
                 {/* <div className={s.sidebarAlerts}>
                     {this.props.alertsList.map(alert => // eslint-disable-line
                         <Alert
@@ -212,9 +298,9 @@ class Sidebar extends React.Component {
                         </Alert>,
                     )}
                 </div> */}
-            
-            
-            
+
+
+
             </nav>
         );
     }

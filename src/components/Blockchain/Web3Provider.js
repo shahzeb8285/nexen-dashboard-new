@@ -137,6 +137,8 @@ class Web3Provider extends React.Component {
         user.income = income;
         console.log("=======================", user)
         this.setState({ user })
+        this.props.dispatch(userFetched(user));
+
 
       })
         .catch(function (err) {
@@ -252,9 +254,10 @@ class Web3Provider extends React.Component {
 
 function mapStateToProps(store) {
   return {
-    isSidebarOpened: store.navigation.sidebarOpened,
-    sidebarVisibility: store.navigation.sidebarVisibility,
-    sidebarPosition: store.navigation.sidebarPosition,
+    // isSidebarOpened: store.navigation.sidebarOpened,
+    // sidebarVisibility: store.navigation.sidebarVisibility,
+    // sidebarPosition: store.navigation.sidebarPosition,
+    user : "jjii"
   };
 }
 
