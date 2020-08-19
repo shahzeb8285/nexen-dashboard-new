@@ -90,15 +90,11 @@ class Web3Provider extends React.Component {
     }
   }
 
-
-
-
   async  initUser(referalId) {
     console.log("initUser")
     if (!this.state.mlm) {
       return
     }
-
 
     console.log("initUser","Gggg")
 
@@ -121,19 +117,21 @@ class Web3Provider extends React.Component {
         var di = income.directIncome;
         var ri = income.recycleIncome;
         var li = income.levelIncome;
-        // var rewi = user.rewardIncome;
+        var rewi = user.rewardIncome;
         var rf = income.recycleFund;
-        // var lf = user.levelFund;
+        var lf = user.levelFund;
         var income = {
 
           directIncome: web3.utils.fromWei(di.toString(), "ether"),
           recycleIncome: web3.utils.fromWei(ri.toString(), "ether"),
           levelIncome: web3.utils.fromWei(li.toString(), "ether"),
-          // rewardIncome : web3.utils.fromWei(rewi.toString(),"ether"),
-          recycleFund: web3.utils.fromWei(rf.toString(), "ether"),
-          // levelFund: web3.utils.fromWei(lf.toString(),"ether")
+          rewardIncome : web3.utils.fromWei(rewi.toString(),"ether")
         };
 
+        var fund = {
+          recycleFund: web3.utils.fromWei(rf.toString(), "ether"),
+          levelFund: web3.utils.fromWei(lf.toString(),"ether")
+        }
         user.income = income;
         console.log("=======================", user)
         this.setState({ user })
@@ -155,8 +153,22 @@ class Web3Provider extends React.Component {
 
 
 
-
-
+  async getUsersFunds(referalId,callback) {
+    const web3 = window.web3;
+    this.data.mlm.methods.getUsersIncomes(referalId).call().then((user)=> {
+        var rf = user.recycleFund;
+        var lf = user.levelFund;
+        var income={
+            recycleFund: web3.utils.fromWei(rf.toString(),"ether"),
+            levelFund: web3.utils.fromWei(lf.toString(),"ether")
+        };
+        callback(false,income);
+    })
+        .catch(function (err) {
+            console.error("problem getting user", err);
+            callback(true,err);
+        });
+}
 
 
   async register(id, price, callback) {
