@@ -43,7 +43,7 @@ class App extends React.PureComponent {
         <div>
         <Particles style={{
           position: "absolute",
-          "top": 0, "left": 0, zIndex: 1
+          "top": 0, "left": 0,
         }}
         
         

@@ -28,6 +28,13 @@ $z-index-variants: (more: 1, less: -1, '10': 10, '-10': -10);
   font-weight: 600;
 }
 
+
+// 
+
+
+
+
+
 .fs-sm {
   font-size: $font-size-sm;
 }
@@ -242,6 +249,13 @@ $z-index-variants: (more: 1, less: -1, '10': 10, '-10': -10);
 @include text-emphasis-variant('.text-gray-lighter', $gray-200);
 @include text-emphasis-variant('.text-bg-sidebar', $sidebar-bg-color);
 
+
+
+
+@keyframes spin {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
+}
 .text-ellipsis {
   display: block;
   white-space: nowrap;
@@ -272,6 +286,10 @@ $z-index-variants: (more: 1, less: -1, '10': 10, '-10': -10);
   font-size: $font-size-mini;
 }
 
+.hoverItem:hover{
+  opacity: 0.6;
+
+}
 .fs-larger {
   font-size: $font-size-larger;
 }
