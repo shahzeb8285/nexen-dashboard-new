@@ -19,11 +19,26 @@ import Sidebar from '../Sidebar';
 import s from './Layout.module.scss';
 import logo from '../../images/logo.png'
 import WinnerSlider from "../../components/WinnerSlider/WinnerSlider";
+<<<<<<< HEAD
 import './Layout.scss';
 
+=======
+import BlockchainManager from '../../utils/BlockchainManager';
+>>>>>>> 2b2cf13ea80875da57496107e4c6a6af7833c934
 
 
 class Layout extends React.Component {
+
+  async componentDidMount(){
+    const instance = await BlockchainManager.getInstance();
+    const data = await instance.data;
+    console.log(d);
+    const contractaddress = await d.contractAddress;
+    this.setState({
+      contractAddress : contractaddress
+    })
+    console.log(this.state.contractAddress);
+   }
   static propTypes = {
     sidebarStatic: PropTypes.bool,
     sidebarOpened: PropTypes.bool,
@@ -36,7 +51,10 @@ class Layout extends React.Component {
   };
   constructor(props) {
     super(props);
-
+    this.state=({
+      contractAddress:"loading",
+      ethereumWallet:"loading"
+    })
     this.handleSwipe = this.handleSwipe.bind(this);
   }
 
@@ -80,7 +98,122 @@ class Layout extends React.Component {
 
 
 
+<<<<<<< HEAD
           
+=======
+          <Container>
+
+            <Row>
+
+              <Col lg={3} xs={6}>
+                <Widget
+                  title={<h5> Affiliate Link </h5>}
+                >
+
+                  <p style={{
+                    backgroundColor: "#2c2f46",
+                    borderRadius: "5px",
+                    display: "block", paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
+                  }}>
+                    <span style={{
+                      flex: "1",
+                      paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
+                    }} className="fw-semi-bold">{33322323233233}</span>
+
+                    {/* <small><span className="circle bg-default text-white"><i className="fa fa-chevron-down" /></span></small> */}
+
+                  </p>
+                </Widget>
+
+              </Col>
+
+              <Col lg={3} xs={6}>
+                <Widget
+                  title={<h5> Smart Contract Address </h5>}
+                >
+
+                  <p style={{
+                    backgroundColor: "#2c2f46",
+                    borderRadius: "5px",
+                    display: "block", paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
+                  }}>
+                    <span style={{
+                      flex: "1",
+                      paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
+                    }} className="fw-semi-bold">{this.state.contractAddress}</span>
+
+                    {/* <small><span className="circle bg-default text-white"><i className="fa fa-chevron-down" /></span></small> */}
+
+                  </p>
+                </Widget>
+
+              </Col>
+
+
+
+
+
+              <Col lg={3} xs={4}>
+                <Widget
+                  title={<h5> Etherium Wallet </h5>}
+                >
+
+                  <p style={{
+                    backgroundColor: "#2c2f46",
+                    borderRadius: "5px",
+                    display: "block", paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
+                  }}>
+                    <span style={{
+                      flex: "1",
+                      paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
+                    }} className="fw-semi-bold">{this.state.ethereumWallet}</span>
+
+                    {/* <small><span className="circle bg-default text-white"><i className="fa fa-chevron-down" /></span></small> */}
+
+                  </p>
+                </Widget>
+              </Col>
+
+              <Col lg={3} xs={3}>
+                <Widget
+                  title={<h5> Etherium Wallet </h5>}
+                >
+
+                  <p style={{
+                    backgroundColor: "#2c2f46",
+                    borderRadius: "5px",
+                    display: "block", paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
+                  }}>
+                    <span style={{
+                      flex: "1",
+                      paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
+                    }} className="fw-semi-bold">33322323233233</span>
+
+                    {/* <small><span className="circle bg-default text-white"><i className="fa fa-chevron-down" /></span></small> */}
+
+                  </p>
+                </Widget>
+              </Col>
+
+
+
+              {/* <Col lg={1} xs={6}/> */}
+
+
+
+
+
+
+
+            </Row>
+
+
+
+
+
+
+          </Container>
+>>>>>>> 2b2cf13ea80875da57496107e4c6a6af7833c934
 
 
 
