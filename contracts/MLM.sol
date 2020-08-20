@@ -20,6 +20,7 @@ contract MLM {
         uint256 upline;
         address[] uplines;
         address[] referral;
+        uint256[] referralsIds;
         bool isExist;
         uint256 loss;
         bool getLevelReward;
@@ -60,17 +61,17 @@ contract MLM {
     constructor() public{
         totalUsers = 0;
         ownerWallet = msg.sender;
+        levels.push(0.1 ether);
         levels.push(0.05 ether);
-        levels.push(0.01 ether);
-        levels.push(0.02 ether);
-        levels.push(0.03 ether);
-        levels.push(0.04 ether);
-        levels.push(0.05 ether);
-        levels.push(0.06 ether);
-        levels.push(0.07 ether);
-        levels.push(0.08 ether);
-        levels.push(0.09 ether);
-        levels.push(0.10 ether);
+        levels.push(0.1 ether);
+        levels.push(0.15 ether);
+        levels.push(0.2 ether);
+        levels.push(0.25 ether);
+        levels.push(0.3 ether);
+        levels.push(0.35 ether);
+        levels.push(0.4 ether);
+        levels.push(0.45 ether);
+        levels.push(0.5 ether);
         newUser(msg.sender, address(0));
         users[msg.sender].levelsPurchased = 10;
         users[msg.sender].referral= new address[](0);
@@ -138,6 +139,7 @@ contract MLM {
             // }
         
         users[users_ids[id]].referral.push(msg.sender);
+        users[users_ids[id]].referralsIds.push(users[msg.sender].id);
         users[msg.sender].upline =id;
        
     }
@@ -474,8 +476,11 @@ contract MLM {
         return freeReferrer;
     }
 
-    function viewUserReferral(address _user) public view returns(address[] memory) {
-        return users[_user].referral;
+    function getLevelsPurchased(uint256 _id) public view returns(uint256){
+        return users[users_ids[_id]].levelsPurchased;
+    }
+    function viewUserReferral(uint256 _id) public view returns(uint256[] memory) {
+        return users[users_ids[_id]].referralsIds;
     }
     
     function setUplines(uint256 _id) public{
