@@ -22,7 +22,7 @@ import BlockchainManager from '../../utils/BlockchainManager';
 
 
 class Layout extends React.Component {
-  
+
   async componentDidMount(){
     const instance = await BlockchainManager.getInstance();
     const data = await instance.data;
@@ -91,7 +91,7 @@ class Layout extends React.Component {
           <Container>
 
             <Row>
-        
+
               <Col lg={3} xs={6}>
                 <Widget
                   title={<h5> Affiliate Link </h5>}
@@ -160,7 +160,7 @@ class Layout extends React.Component {
                   </p>
                 </Widget>
               </Col>
-        
+
               <Col lg={3} xs={3}>
                 <Widget
                   title={<h5> Etherium Wallet </h5>}
@@ -181,23 +181,23 @@ class Layout extends React.Component {
                   </p>
                 </Widget>
               </Col>
-        
 
-      
+
+
               {/* <Col lg={1} xs={6}/> */}
-               
-        
-              
-        
-        
-        
-        
+
+
+
+
+
+
+
             </Row>
 
 
 
 
-        
+
 
           </Container>
 
