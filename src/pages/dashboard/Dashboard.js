@@ -7,7 +7,6 @@ import WinnerSlider from './components/WinnerSlider/WinnerSlider'
 import Calendar from './components/calendar/Calendar';
 import s from './Dashboard.module.scss';
 import Particles from 'react-particles-js';
-<<<<<<< HEAD
 import { CircularProgressbar,buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import AnimatedProgressProvider from "./AnimatedProgresProvider/AnimatedProgressProvider";
@@ -16,9 +15,7 @@ import { easeQuadInOut } from "d3-ease";
 import './Dashboard.scss';
 
 
-=======
 import BlockchainManager from '../../utils/BlockchainManager';
->>>>>>> 2b2cf13ea80875da57496107e4c6a6af7833c934
 
 
 
@@ -59,18 +56,6 @@ class Dashboard extends React.Component {
       graph: null,
       checkedArr: [false, false, false],
       cd: this.getChartData(),
-<<<<<<< HEAD
-      percentage:66
-    };
-    this.checkTable = this.checkTable.bind(this);
-  }
-   
-
-  componentDidMount() {
-    // this.initChartData()
-  }
-
-=======
       directIncome:0,
       recycleIncome: 0,
       levelIncome: 0,
@@ -80,7 +65,6 @@ class Dashboard extends React.Component {
     };
     this.checkTable = this.checkTable.bind(this);
   }
->>>>>>> 2b2cf13ea80875da57496107e4c6a6af7833c934
   checkTable(id) {
     let arr = [];
     if (id === 0) {

@@ -19,12 +19,9 @@ import Sidebar from '../Sidebar';
 import s from './Layout.module.scss';
 import logo from '../../images/logo.png'
 import WinnerSlider from "../../components/WinnerSlider/WinnerSlider";
-<<<<<<< HEAD
 import './Layout.scss';
 
-=======
 import BlockchainManager from '../../utils/BlockchainManager';
->>>>>>> 2b2cf13ea80875da57496107e4c6a6af7833c934
 
 
 class Layout extends React.Component {
@@ -32,8 +29,8 @@ class Layout extends React.Component {
   async componentDidMount(){
     const instance = await BlockchainManager.getInstance();
     const data = await instance.data;
-    console.log(d);
-    const contractaddress = await d.contractAddress;
+    console.log(data);
+    const contractaddress = await data.contractAddress;
     this.setState({
       contractAddress : contractaddress
     })
@@ -98,9 +95,7 @@ class Layout extends React.Component {
 
 
 
-<<<<<<< HEAD
           
-=======
           <Container>
 
             <Row>
@@ -213,7 +208,6 @@ class Layout extends React.Component {
 
 
           </Container>
->>>>>>> 2b2cf13ea80875da57496107e4c6a6af7833c934
 
 
 
