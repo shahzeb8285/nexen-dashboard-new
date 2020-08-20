@@ -7,6 +7,8 @@ import * as serviceWorker from './serviceWorker';
 
 import App from './components/App';
 import reducers from './reducers';
+import ProfilePage from './pages/profile/Profile';
+import { HashRouter } from 'react-router-dom';
 
 const store = createStore(
   reducers,
@@ -15,8 +17,10 @@ const store = createStore(
 
 ReactDOM.render(
     <Provider store={store}>
-      
+    <HashRouter>
+    
         <App />
+        </HashRouter>
     </Provider>,
     document.getElementById('root')
 );

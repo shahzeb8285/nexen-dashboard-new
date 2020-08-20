@@ -17,7 +17,9 @@ import CoreTypography from '../../pages/typography';
 import Header from '../Header';
 import Sidebar from '../Sidebar';
 import s from './Layout.module.scss';
+import logo from '../../images/logo.png'
 import WinnerSlider from "../../components/WinnerSlider/WinnerSlider";
+import './Layout.scss';
 
 
 
@@ -65,7 +67,11 @@ class Layout extends React.Component {
         ].join(' ')}
       >
         <div className={s.wrap}>
-          <Header />
+          {/* <Header /> */}
+          {/* <div className="logo">
+          <img src={logo} className={"LinksGroup_headerLink__vI_3u "} style={{width: "19%", height: 'auto',}} alt="Logo" />
+          </div> */}
+         
           {/* <Chat chatOpen={this.state.chatOpen} /> */}
           {/* <Helper /> */}
 
@@ -74,118 +80,7 @@ class Layout extends React.Component {
 
 
 
-          <Container>
-
-            <Row>
-        
-              <Col lg={3} xs={6}>
-                <Widget
-                  title={<h5> Affiliate Link </h5>}
-                >
-
-                  <p style={{
-                    backgroundColor: "#2c2f46",
-                    borderRadius: "5px",
-                    display: "block", paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
-                  }}>
-                    <span style={{
-                      flex: "1",
-                      paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
-                    }} className="fw-semi-bold">33322323233233</span>
-
-                    {/* <small><span className="circle bg-default text-white"><i className="fa fa-chevron-down" /></span></small> */}
-
-                  </p>
-                </Widget>
-
-              </Col>
-
-              <Col lg={3} xs={6}>
-                <Widget
-                  title={<h5> Smart Contract Address </h5>}
-                >
-
-                  <p style={{
-                    backgroundColor: "#2c2f46",
-                    borderRadius: "5px",
-                    display: "block", paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
-                  }}>
-                    <span style={{
-                      flex: "1",
-                      paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
-                    }} className="fw-semi-bold">33322323233233</span>
-
-                    {/* <small><span className="circle bg-default text-white"><i className="fa fa-chevron-down" /></span></small> */}
-
-                  </p>
-                </Widget>
-
-              </Col>
-
-
-
-
-
-              <Col lg={3} xs={4}>
-                <Widget
-                  title={<h5> Etherium Wallet </h5>}
-                >
-
-                  <p style={{
-                    backgroundColor: "#2c2f46",
-                    borderRadius: "5px",
-                    display: "block", paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
-                  }}>
-                    <span style={{
-                      flex: "1",
-                      paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
-                    }} className="fw-semi-bold">33322323233233</span>
-
-                    {/* <small><span className="circle bg-default text-white"><i className="fa fa-chevron-down" /></span></small> */}
-
-                  </p>
-                </Widget>
-              </Col>
-        
-              <Col lg={3} xs={3}>
-                <Widget
-                  title={<h5> Etherium Wallet </h5>}
-                >
-
-                  <p style={{
-                    backgroundColor: "#2c2f46",
-                    borderRadius: "5px",
-                    display: "block", paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
-                  }}>
-                    <span style={{
-                      flex: "1",
-                      paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
-                    }} className="fw-semi-bold">33322323233233</span>
-
-                    {/* <small><span className="circle bg-default text-white"><i className="fa fa-chevron-down" /></span></small> */}
-
-                  </p>
-                </Widget>
-              </Col>
-        
-
-      
-              {/* <Col lg={1} xs={6}/> */}
-               
-        
-              
-        
-        
-        
-        
-            </Row>
-
-
-
-
-        
-
-          </Container>
+          
 
 
 

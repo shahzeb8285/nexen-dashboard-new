@@ -13,6 +13,9 @@ import '../styles/theme.scss';
 import LayoutComponent from '../components/Layout';
 import Login from '../pages/login';
 import Register from '../pages/register';
+import Profile from '../pages/profile/Profile';
+import NotFound from '../pages/NotFound/NotFound'
+
 import { logoutUser } from '../actions/user';
 
 const PrivateRoute = ({dispatch, component, ...rest }) => {
@@ -125,12 +128,14 @@ class App extends React.PureComponent {
             />
             <HashRouter>
                 <Switch>
+                    <Route path="/app/profile" exact component={NotFound}/>
                     <Route path="/" exact render={() => <Redirect to="/app/main"/>}/>
                     <Route path="/app" exact render={() => <Redirect to="/app/main"/>}/>
                     <PrivateRoute path="/app" dispatch={this.props.dispatch} component={LayoutComponent}/>
                     <Route path="/register" exact component={Register}/>
                     <Route path="/login" exact component={Login}/>
                     <Route path="/error" exact component={ErrorPage}/>
+                    
                     <Route component={ErrorPage}/>
                     <Redirect from="*" to="/app/main/dashboard"/>
                 </Switch>

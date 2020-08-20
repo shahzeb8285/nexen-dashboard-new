@@ -9,6 +9,14 @@ import { logoutUser } from '../../actions/user';
 import logo from '../../images/logo.png';
 import LinksGroup from './LinksGroup';
 import s from './Sidebar.module.scss';
+import {Row,Col} from 'reactstrap';
+import eth from '../../images/1 copy.png';
+import './Sidebar.scss';
+import Header from '../Header/Header';
+import { Container} from 'reactstrap';
+import { closeSidebar, openSidebar } from '../../actions/navigation';
+import Widget from '../../components/Widget';
+import avatar from '../../images/people/a5.jpg';
 
 
 class Sidebar extends React.Component {
@@ -77,8 +85,20 @@ class Sidebar extends React.Component {
 
                 </header> */}
                 <ul className={s.nav}>
+                    
                 <img src={logo} className={"LinksGroup_headerLink__vI_3u "} style={{width: "80%", height: 'auto',}} alt="Logo" />
 
+
+                        {/* <Header></Header> */}
+
+                        <div className="avatar">
+                        <span className="avatar__pic">
+                      <img src={avatar}  alt="..." />
+                      </span>
+                     <span className="avatar__name">Binod</span>
+                        </div>
+
+                       
                     <LinksGroup
                         onActiveSidebarItemChange={activeItem => this.props.dispatch(changeActiveSidebarItem(activeItem))}
                         activeItem={this.props.activeItem}
@@ -213,7 +233,158 @@ class Sidebar extends React.Component {
                     )}
                 </div> */}
             
+            {/* <Row>
+                <Row>
+                <Col lg={12}>
+                    <div>
+                        <h3>Id 12345</h3>
+                    </div>
+                </Col>
+                </Row>
+                <Row>
+                    <Col lg={6}>
+                        <img src={eth}></img>
+                    </Col>
+                    <Col lg={6}>
+                        <h3>3</h3>
+                    </Col>
+                </Row>
+                
+
+            </Row> */}
+           
+                <div className="id">
+                <div className="id__header" >
+                     <h3>Id 12345</h3>
+                </div>
+                <div className="eth">
+                   <img src={eth} ></img>
+                   <div className="value">
+                       <h4>3</h4>
+                       
+                       <h4>$123</h4>
+
+                   </div>
+                </div>
+                <div className="id__btn">
+                    <h4>0.35 eth</h4>
+                </div>
+            </div>
+              
             
+
+            <Container>
+
+            <Row>
+        
+              <Col lg={12} xs={12}>
+                <Widget
+                  title={<h5> Affiliate Link </h5>}
+                >
+
+                  <p style={{
+                    backgroundColor: "#2c2f46",
+                    borderRadius: "5px",
+                    display: "block", paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
+                  }}>
+                    <span style={{
+                      flex: "1",
+                      paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
+                    }} className="fw-semi-bold">33322323233233</span>
+
+                    {/* <small><span className="circle bg-default text-white"><i className="fa fa-chevron-down" /></span></small> */}
+
+                  </p>
+                </Widget>
+
+              </Col>
+
+              <Col lg={12} xs={12}>
+                <Widget
+                  title={<h5> Smart Contract Address </h5>}
+                >
+
+                  <p style={{
+                    backgroundColor: "#2c2f46",
+                    borderRadius: "5px",
+                    display: "block", paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
+                  }}>
+                    <span style={{
+                      flex: "1",
+                      paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
+                    }} className="fw-semi-bold">33322323233233</span>
+
+                    {/* <small><span className="circle bg-default text-white"><i className="fa fa-chevron-down" /></span></small> */}
+
+                  </p>
+                </Widget>
+
+              </Col>
+
+
+
+
+
+              <Col lg={12} xs={12}>
+                <Widget
+                  title={<h5> Etherium Wallet </h5>}
+                >
+
+                  <p style={{
+                    backgroundColor: "#2c2f46",
+                    borderRadius: "5px",
+                    display: "block", paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
+                  }}>
+                    <span style={{
+                      flex: "1",
+                      paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
+                    }} className="fw-semi-bold">33322323233233</span>
+
+                    {/* <small><span className="circle bg-default text-white"><i className="fa fa-chevron-down" /></span></small> */}
+
+                  </p>
+                </Widget>
+              </Col>
+        
+              <Col lg={12} xs={12}>
+                <Widget
+                  title={<h5> Etherium Wallet </h5>}
+                >
+
+                  <p style={{
+                    backgroundColor: "#2c2f46",
+                    borderRadius: "5px",
+                    display: "block", paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
+                  }}>
+                    <span style={{
+                      flex: "1",
+                      paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
+                    }} className="fw-semi-bold">33322323233233</span>
+
+                    {/* <small><span className="circle bg-default text-white"><i className="fa fa-chevron-down" /></span></small> */}
+
+                  </p>
+                </Widget>
+              </Col>
+        
+
+      
+              {/* <Col lg={1} xs={6}/> */}
+               
+        
+              
+        
+        
+        
+        
+            </Row>
+
+
+
+
+        
+
+          </Container>
             
             </nav>
         );

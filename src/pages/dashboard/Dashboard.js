@@ -7,6 +7,12 @@ import WinnerSlider from './components/WinnerSlider/WinnerSlider'
 import Calendar from './components/calendar/Calendar';
 import s from './Dashboard.module.scss';
 import Particles from 'react-particles-js';
+import { CircularProgressbar,buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+import AnimatedProgressProvider from "./AnimatedProgresProvider/AnimatedProgressProvider";
+// import ChangingProgressProvider from "./ChangingProgressProvider";
+import { easeQuadInOut } from "d3-ease";
+import './Dashboard.scss';
 
 
 
@@ -20,11 +26,12 @@ class Dashboard extends React.Component {
     this.state = {
       graph: null,
       checkedArr: [false, false, false],
-      cd: this.getChartData()
+      cd: this.getChartData(),
+      percentage:66
     };
     this.checkTable = this.checkTable.bind(this);
   }
-
+   
 
   componentDidMount() {
     // this.initChartData()
@@ -848,11 +855,66 @@ class Dashboard extends React.Component {
 
 
           </Row>
+          <Row>
+            <Col lg={4} xs={12}>
+            <AnimatedProgressProvider
+        valueStart={0}
+        valueEnd={66}
+        duration={1.4}
+        easingFunction={easeQuadInOut}
+        repeat
+      >
+        {value => {
+          const roundedValue = Math.round(value);
+          return (
+            <CircularProgressbar
+              value={value}
+              text={`${roundedValue}%`}
+              /* This is important to include, because if you're fully managing the
+        animation yourself, you'll want to disable the CSS animation. */
+              styles={buildStyles({ pathTransition: "none" })}
+            />
+          );
+        }}
+      </AnimatedProgressProvider>
+
+            </Col>
+            <Col lg={4} xs={12}>
+            <CircularProgressbar 
+            value={this.state.percentage} 
+            text={`${this.state.percentage}%`}
+            styles={buildStyles({
+              // Rotation of path and trail, in number of turns (0-1)
+              // rotation: 0.25,
+           
+              // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+              strokeLinecap: 'butt',
+           
+              // Text size
+              textSize: '16px',
+           
+              // How long animation takes to go from one percentage to another, in seconds
+              pathTransitionDuration: 0.5,
+           
+              // Can specify path transition in more detail, or remove it entirely
+              // pathTransition: 'none',
+            
+              // Colors rgba(62, 152, 199, ${this.state.percentage / 100})
+              pathColor: `rgb(205 147 39)`,
+              textColor: `rgb(205 147 39)`,
+              trailColor: '#d6d6d6',
+              backgroundColor: '#3e98c7',
+            })} />;
+            </Col>
+            <Col lg={4} xs={12}>
+            <CircularProgressbar value={this.state.percentage} text={`${this.state.percentage}%`} />;
+            </Col>
+          </Row>
 
 
 
 
-
+            {/* chart starting here */}
           <Row>
             <Col lg={7} xs={12}>
               <Widget

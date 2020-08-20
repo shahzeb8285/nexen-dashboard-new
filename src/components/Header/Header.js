@@ -9,6 +9,7 @@ import { logoutUser } from '../../actions/user';
 import avatar from '../../images/people/a5.jpg';
 import Notifications from '../Notifications';
 import s from './Header.module.scss';
+import ProfilePage from '../../pages/profile/Profile'
 
 
 
@@ -103,7 +104,10 @@ class Header extends React.Component {
 
   render() {
     return (
+      
+
       <Navbar className={`d-print-none ${s.root}`}>
+        {/* <ProfilePage></ProfilePage> */}
         {/* <UncontrolledAlert className={`${s.alert} mr-3 d-lg-down-none animate__animated animate__bounceIn animate__delay-1s`}>
           <i className="fa fa-info-circle mr-1" /> Check out Light Blue <button className="btn-link" onClick={() => this.setState({ settingsOpen: true })}>settings</button> on
           the right!
@@ -140,9 +144,9 @@ class Header extends React.Component {
               <span className={`small ${s.accountCheck}`}>Binod</span>
               {/* <Badge className={s.badge} color="primary">13</Badge> */}
             </DropdownToggle>
-            <DropdownMenu right className={`${s.notificationsWrapper} py-0 animate__animated animate__faster animate__fadeInUp`}>
+            {/* <DropdownMenu right className={`${s.notificationsWrapper} py-0 animate__animated animate__faster animate__fadeInUp`}>
               <Notifications />
-            </DropdownMenu>
+            </DropdownMenu> */}
           </Dropdown>
           {/* <NavItem className="d-lg-none d-md-block d-sm-none">
             <NavLink onClick={this.toggleSearchOpen} className={s.navItem} href="#">
