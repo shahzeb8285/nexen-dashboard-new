@@ -31,7 +31,13 @@ const Level = (props) => {
 
     <>
 
-      <Col style={{
+      <Col 
+      
+      onClick={()=>{
+        props.onLevelClicked(props.levelNumber)
+      }}
+      
+      style={{
         position: "relative",
         paddingTop: "20px",
         display: "inline-block",
@@ -46,7 +52,9 @@ const Level = (props) => {
           <Col style={{
             background: "radial-gradient(farthest-side ellipse at 10% 0, " + startClr
               + " 20%, " + endClr + ")",
-            // height: "100%",
+
+            filter: props.isBought?null:" blur(2px)",
+            WebkitFilter: props.isBought?null:"blur(2px)",
             borderRadius: "8px 8px 0px 0px",
             padding: "2px",
             textAlign: "center",

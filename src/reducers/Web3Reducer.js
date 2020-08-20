@@ -1,7 +1,7 @@
 import { INCOME_FETCHED,USER_FETCHED } from '../actions/web3Actions';
 
 export default function Web3Reducer(state = {
-    user: {name:"Fffffffff"},
+    user: {name:""},
 }, action) {
     switch (action.type) {
         case INCOME_FETCHED:

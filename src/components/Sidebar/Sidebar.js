@@ -12,6 +12,7 @@ import s from './Sidebar.module.scss';
 import { Col, Container, Row } from 'reactstrap';
 import Widget from '../../components/Widget';
 import avatar from '../../images/people/a5.jpg';
+import { toast } from 'react-toastify';
 
 
 class Sidebar extends React.Component {
@@ -56,6 +57,39 @@ class Sidebar extends React.Component {
             }
         }
     }
+
+
+
+    copyToClipboard = (name, data) => {
+        // const el =document.createElement('txtps');
+        // el.value = data;
+        // document.body.appendChild(el);
+        // el.querySelectorAll(0,111111111);
+        // document.execCommand("copy");
+        // document.body.removeChild(el);
+    
+        navigator.clipboard.writeText(data).then(() => {
+          toast.success(name + " copied successfully", {
+            position: "bottom-right",
+            autoClose: 5000,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true
+          });
+        }).catch((err) => {
+          toast.success(err, {
+            position: "bottom-right",
+            autoClose: 5000,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true
+          });
+        })
+    
+      }
+
+
+
 
     dismissAlert(id) {
         this.props.dispatch(dismissAlert(id));
@@ -312,6 +346,8 @@ function mapStateToProps(store) {
         sidebarStatic: store.navigation.sidebarStatic,
         alertsList: store.alerts.alertsList,
         activeItem: store.navigation.activeItem,
+        user: store.Web3Reducer.user
+
     };
 }
 

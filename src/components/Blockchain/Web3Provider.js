@@ -29,6 +29,7 @@ class Web3Provider extends React.Component {
   async componentDidMount() {
     await this.loadWeb3();
     await this.loadBlockchainData();
+    await this.initUsersFunds(1);
     await this.initUser(1)
 
 
@@ -105,11 +106,21 @@ class Web3Provider extends React.Component {
 
       mlm.methods.getUsersIncomes(referalId).call().then((income) => {
         var user = {}
+
+        // address inviter,
+        // uint256 totalReferals,
+        // uint256 totalRecycles,
+        // uint256 totalWins,
+        // uint256 levelsPurchased,
+        // uint256 loss
         user = {
           inviter: User[0],
           totalReferrals: User[1],
-          dailyReferrals: User[2],
-          levelsPurchased: User[3],
+          totalRecycles: User[2],
+          totalWins: User[3],
+          levelsPurchased: User[4],
+          loss:User[5],
+
           walletAddress: this.state.walletAddress,
           contractAddress: this.state.contractAddress
         }
@@ -117,22 +128,25 @@ class Web3Provider extends React.Component {
         var di = income.directIncome;
         var ri = income.recycleIncome;
         var li = income.levelIncome;
-        var rewi = user.rewardIncome;
-        var rf = income.recycleFund;
-        var lf = user.levelFund;
+        var rewi = income.rewardIncome;
+ 
+        console.log("rewardIncome",)
         var income = {
 
           directIncome: web3.utils.fromWei(di.toString(), "ether"),
           recycleIncome: web3.utils.fromWei(ri.toString(), "ether"),
           levelIncome: web3.utils.fromWei(li.toString(), "ether"),
+          levelFund:"test",
           rewardIncome : web3.utils.fromWei(rewi.toString(),"ether")
         };
 
-        var fund = {
-          recycleFund: web3.utils.fromWei(rf.toString(), "ether"),
-          levelFund: web3.utils.fromWei(lf.toString(),"ether")
-        }
+
+        // var fund = {
+        //   recycleFund: web3.utils.fromWei(rf.toString(), "ether"),
+        //   levelFund: web3.utils.fromWei(lf.toString(),"ether")
+        // }
         user.income = income;
+        user.funds = this.state.funds;
         console.log("=======================", user)
         this.setState({ user })
         this.props.dispatch(userFetched(user));
@@ -153,20 +167,23 @@ class Web3Provider extends React.Component {
 
 
 
-  async getUsersFunds(referalId,callback) {
+  async initUsersFunds(referalId) {
     const web3 = window.web3;
-    this.data.mlm.methods.getUsersIncomes(referalId).call().then((user)=> {
+    const mlm = this.state.mlm;
+    mlm.methods.getUsersFunds(referalId).call().then((user)=> {
         var rf = user.recycleFund;
         var lf = user.levelFund;
-        var income={
+        var funds={
             recycleFund: web3.utils.fromWei(rf.toString(),"ether"),
             levelFund: web3.utils.fromWei(lf.toString(),"ether")
         };
-        callback(false,income);
+
+        this.setState({funds})
+        // callback(false,income);
     })
         .catch(function (err) {
             console.error("problem getting user", err);
-            callback(true,err);
+            // callback(true,err);
         });
 }
 
@@ -183,7 +200,8 @@ class Web3Provider extends React.Component {
   //Buy level
   async buyLevel(level, price, callback) {
     // this.setState({ loading: true });
-    this.data.mlm.methods.buyLevel(level).send({ from: this.data.account, value: price })
+    this.data.mlm.methods.buyLevel(level)
+    .send({ from: this.data.account, value: price })
       .once('receipt', (receipt) => {
         // this.setState({ loading: false })
         callback(receipt)

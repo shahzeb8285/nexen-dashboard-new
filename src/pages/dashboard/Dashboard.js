@@ -626,6 +626,14 @@ class Dashboard extends React.Component {
     return chartData
   }
 
+
+  onLevelClicked(levelNumber){
+      // console.log("LevelNumber",levelNumber);
+
+      
+
+  }
+
   render() {
     return (
       <>
@@ -761,11 +769,11 @@ class Dashboard extends React.Component {
 
                     primaryTitle={"Reward Income"}
                     secondaryTitle={"Total Win"}
-                    primaryAmount={this.state.rewardIncome}
+                    primaryAmount={this.props.user.income ? this.props.user.income.rewardIncome : "0x"}
                     bgStartColor={"#0984e3"}
                     bgEndColor={"#06508a"}
+                    secondaryAmount={this.props.user ? this.props.user.totalWins : "0x"}
 
-                    secondaryAmount={4}
 
                   />
 
@@ -780,9 +788,9 @@ class Dashboard extends React.Component {
                   <InfoTile
 
                     primaryTitle={"Level Income"}
-                    secondaryTitle={"Total Team"}
+                    // secondaryTitle={"Total Team"}
                     primaryAmount={this.props.user.income ? this.props.user.income.levelIncome : "0x"}
-                    secondaryAmount={1000}
+                    // secondaryAmount={1000}
                     bgStartColor={"#fdcb6e"}
                     bgEndColor={"#bf8415"}
 
@@ -798,7 +806,7 @@ class Dashboard extends React.Component {
                     primaryTitle={"Recycle Income"}
                     secondaryTitle={"Total Recycle"}
                     primaryAmount={this.props.user.income ? this.props.user.income.recycleIncome : "0x"}
-                    secondaryAmount={1000}
+                    secondaryAmount={this.props.user ? this.props.user.totalRecycles : "0x"}
                     bgStartColor={"#621e94"}
                     bgEndColor={"#240b36"}
 
@@ -817,8 +825,9 @@ class Dashboard extends React.Component {
 
                     primaryTitle={"Level Fund"}
                     secondaryTitle={"Level Bought"}
-                    primaryAmount={500}
-                    secondaryAmount={1000}
+                    primaryAmount={this.props.user.funds ? this.props.user.funds.levelFund : "0x"}
+                    secondaryAmount={this.props.user ? this.props.user.levelsPurchased : "0x"}
+
                     bgStartColor={"#961516"}
                     bgEndColor={"#d63031"}
 
@@ -832,8 +841,9 @@ class Dashboard extends React.Component {
 
                     primaryTitle={"Recycle Fund"}
                     secondaryTitle={"Total Recycle"}
-                    primaryAmount={this.props.user.income ? this.props.user.income.recycleFund : "0x"}
-                    secondaryAmount={1000}
+                    
+                    primaryAmount={this.props.user.funds ? this.props.user.funds.recycleFund : "0x"}
+                    secondaryAmount={this.props.user ? this.props.user.totalRecycles : "0x"}
                     bgStartColor={"#d35400"}
                     bgEndColor={"#a1511b"}
 
@@ -893,8 +903,10 @@ class Dashboard extends React.Component {
                 icon={require("../../images/levels/level2.png")}
                 label={"point"}
                 levelPosition={"1st"}
-                isBought={true}
+                isBought={false}
                 amount={700}
+                levelNumber={1}
+                onLevelClicked={this.onLevelClicked}
               />
 
               <Level
@@ -902,9 +914,10 @@ class Dashboard extends React.Component {
                 bgEndColor={"#06508a"}
                 icon={require("../../images/levels/level1.png")}
                 levelPosition={"2nd"}
-
+                levelNumber={2}
+                onLevelClicked={this.onLevelClicked}
                 label={"point"}
-                isBought={true}
+                isBought={false}
                 amount={700}
               />
 
@@ -913,7 +926,8 @@ class Dashboard extends React.Component {
                 bgEndColor={"#bf8415"}
                 icon={require("../../images/levels/level1.png")}
                 levelPosition={"3rd"}
-
+                levelNumber={3}
+                onLevelClicked={this.onLevelClicked}
                 label={"point"}
                 isBought={false}
                 amount={700}
@@ -938,7 +952,7 @@ class Dashboard extends React.Component {
                 levelPosition={"5th"}
 
                 label={"point"}
-                isBought={true}
+                isBought={false}
                 amount={700}
               />
             </Row>
@@ -974,7 +988,7 @@ class Dashboard extends React.Component {
                 levelPosition={"8th"}
 
                 label={"point"}
-                isBought={true}
+                isBought={false}
                 amount={700}
               />
 
