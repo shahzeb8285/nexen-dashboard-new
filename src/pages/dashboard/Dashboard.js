@@ -12,34 +12,10 @@ import Web3Provider from "../../components/Blockchain/Web3Provider"
 import { connect } from 'react-redux';
 import { Redirect, Route, Switch, withRouter } from 'react-router';
 import Level from "./components/Level/Level";
+import swal from 'sweetalert';
 
 class Dashboard extends React.Component {
 
-
-  async componentDidMount() {
-    // const data = await instance.data;
-    // BlockchainManager.getInstance().getUsersIncomes(1, (isError, data) => {
-    //   console.log("===============");
-    //   console.log(data,isError);
-
-    //   if (isError) {
-
-    //     console.log("error");
-    //     //handle errors
-    //     //TODO implement error notification system
-    //   } else {
-    //     this.setState({
-    //       directIncome: data.directIncome,
-    //       recycleIncome: data.recycleIncome,
-    //       levelIncome: data.levelIncome,
-    //       recycleFund: data.recycleFund,
-    //       levelFund: data.levelFund,
-    //       rewardIncome : data.rewardIncome
-    //     })
-    //   }
-    // });
-
-  }
 
   constructor(props) {
     super(props);
@@ -628,9 +604,21 @@ class Dashboard extends React.Component {
 
 
   onLevelClicked(levelNumber){
-      // console.log("LevelNumber",levelNumber);
-
-      
+    swal({
+      title: `Do You want to Buy level ${levelNumber}?`,
+      text: "Price is 0.1 Ether",
+      buttons: true,
+      dangerMode: false,
+    })
+    .then((willBuy) => {
+      if (willBuy) {
+        swal("Congratulations", {
+          icon: "success",
+        });
+      } else {
+        swal("Oops, You have rejected to buy level");
+      }
+    });
 
   }
 
@@ -639,92 +627,6 @@ class Dashboard extends React.Component {
       <>
 
         <Web3Provider />
-        {/* <Particles style={{
-          position: "absolute",
-          "top": 0, "left": 0, "z-index": 1
-        }}
-        
-        
-        
-        particlesRef={{
-          background: {
-            color: {
-              value: "#0d47a1",
-            },
-          },
-          fpsLimit: 60,
-          interactivity: {
-            detectsOn: "canvas",
-            events: {
-              onClick: {
-                enable: true,
-                mode: "push",
-              },
-              onHover: {
-                enable: true,
-                mode: "repulse",
-              },
-              resize: true,
-            },
-            modes: {
-              bubble: {
-                distance: 400,
-                duration: 2,
-                opacity: 0.8,
-                size: 40,
-              },
-              push: {
-                quantity: 4,
-              },
-              repulse: {
-                distance: 200,
-                duration: 0.4,
-              },
-            },
-          },
-          particles: {
-            color: {
-              value: "#ffffff",
-            },
-            links: {
-              color: "#ffffff",
-              distance: 150,
-              enable: true,
-              opacity: 0.5,
-              width: 1,
-            },
-            collisions: {
-              enable: true,
-            },
-            move: {
-              direction: "none",
-              enable: true,
-              outMode: "bounce",
-              random: false,
-              speed: 6,
-              straight: false,
-            },
-            number: {
-              density: {
-                enable: true,
-                value_area: 800,
-              },
-              value: 80,
-            },
-            opacity: {
-              value: 0.5,
-            },
-            shape: {
-              type: "circle",
-            },
-            size: {
-              random: true,
-              value: 5,
-            },
-          },
-          detectRetina: true,
-        }}/> */}
-
         <div className={s.root}>
           <small>
             <h2>Insights</h2>
