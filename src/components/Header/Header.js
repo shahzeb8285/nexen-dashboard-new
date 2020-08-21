@@ -108,7 +108,7 @@ class Header extends React.Component {
           <i className="fa fa-info-circle mr-1" /> Check out Light Blue <button className="btn-link" onClick={() => this.setState({ settingsOpen: true })}>settings</button> on
           the right!
         </UncontrolledAlert> */}
-        <Collapse className={`${s.searchCollapse} ml-lg-0 mr-md-3`} isOpen={this.state.searchOpen}>
+        {/* <Collapse className={`${s.searchCollapse} ml-lg-0 mr-md-3`} isOpen={this.state.searchOpen}>
           <InputGroup className={`${s.navbarForm} ${this.state.searchFocused ? s.navbarFormFocused : ''}`}>
             <InputGroupAddon addonType="prepend" className={s.inputAddon}><InputGroupText><i className="fa fa-search" /></InputGroupText></InputGroupAddon>
             <Input
@@ -117,7 +117,7 @@ class Header extends React.Component {
               onBlur={() => this.setState({ searchFocused: false })}
             />
           </InputGroup>
-        </Collapse>
+        </Collapse> */}
         <Form className="d-md-down-none mr-3 ml-3" inline>
           {/* <FormGroup>
             <InputGroup className="input-group-no-border">

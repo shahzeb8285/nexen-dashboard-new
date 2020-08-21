@@ -4,7 +4,7 @@ import { Switch, Route, Redirect } from 'react-router';
 import { HashRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import Particles from 'react-particles-js';
-import BlockchainManager from '../utils/BlockchainManager';
+// import BlockchainManager from '../utils/BlockchainManager';
 /* eslint-disable */
 import ErrorPage from '../pages/error';
 /* eslint-enable */
@@ -30,9 +30,9 @@ const CloseButton = ({closeToast}) => <i onClick={closeToast} className="la la-c
 
 class App extends React.PureComponent {
   async componentDidMount(){
-   const x = await BlockchainManager.getInstance();
-   const u = await x.data;
-   const v = await u.contractAddress;
+  //  const x = await BlockchainManager.getInstance();
+  //  const u = await x.data;
+  //  const v = await u.contractAddress;
     // console.log(v);
   }
   
@@ -43,7 +43,7 @@ class App extends React.PureComponent {
         <div>
         <Particles style={{
           position: "absolute",
-          "top": 0, "left": 0, "z-index": 1
+          "top": 0, "left": 0,
         }}
         
         

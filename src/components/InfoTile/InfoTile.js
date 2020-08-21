@@ -103,14 +103,14 @@ class InfoTile extends React.Component {
       <React.Fragment >
         <section
           style={{
-           background: "radial-gradient(farthest-side ellipse at 10% 0, "+this.props.bgStartColor
-           +" 20%, "+this.props.bgEndColor+")"
-        }}
+            background: "radial-gradient(farthest-side ellipse at 10% 0, " + this.props.bgStartColor
+              + " 20%, " + this.props.bgEndColor + ")"
+          }}
           className={s.body}
         >
 
           <Col style={{
-         
+
           }}>
             <h3 className={s.title}>{this.props.primaryAmount}</h3>
 
@@ -123,7 +123,7 @@ class InfoTile extends React.Component {
 
           <div style={{
             "paddingLeft": "20px",
-          
+
           }}>
             <h6 className={"fw-bold"}>{this.props.secondaryTitle}</h6>
             <h5 >{this.props.secondaryAmount}</h5>

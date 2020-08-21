@@ -6,6 +6,9 @@ import { Redirect, Route, Switch, withRouter } from 'react-router';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { Col, Container, Row } from 'reactstrap';
 import { closeSidebar, openSidebar } from '../../actions/navigation';
+import { incomeFetched, userFetched } from '../../actions/web3Actions';
+import WinnerSlider from '../../pages/dashboard/components/WinnerSlider/WinnerSlider';
+
 import Widget from '../../components/Widget';
 import Charts from '../../pages/components/charts/Charts';
 import UIIcons from '../../pages/components/icons';
@@ -17,22 +20,41 @@ import CoreTypography from '../../pages/typography';
 import Header from '../Header';
 import Sidebar from '../Sidebar';
 import s from './Layout.module.scss';
-import WinnerSlider from "../../components/WinnerSlider/WinnerSlider";
-import BlockchainManager from '../../utils/BlockchainManager';
+import { toast } from 'react-toastify';
+import WinnerTile from '../../pages/dashboard/components/WinnerSlider/WinnerTile'
+// import BlockchainManager from '../../utils/BlockchainManager';
 
 
 class Layout extends React.Component {
-
-  async componentDidMount(){
-    const instance = await BlockchainManager.getInstance();
-    const data = await instance.data;
-    console.log(d);
-    const contractaddress = await d.contractAddress;
-    this.setState({
-      contractAddress : contractaddress
+  constructor(props) {
+    super(props);
+    this.state = ({
+      contractAddress: "0x",
+      ethereumWallet: "0x"
     })
-    console.log(this.state.contractAddress);
-   }
+    this.handleSwipe = this.handleSwipe.bind(this);
+  }
+
+  async componentDidMount() {
+
+    console.log("fffffffffff", this.props)
+    // const instance = await BlockchainManager.getInstance();
+    // console.log(instance);
+    // const data = instance.data;
+    // console.log("=====================",data);
+    // const contractaddress = data.contractAddress;
+    // console.log(contractaddress);
+    // console.log(typeof contractaddress,"contractaddresstype");
+    // this.setState({
+    //   contractAddress : contractaddress
+    // })
+
+
+    // instance.getUserBlockChainDetails((data)=>{
+    //   console.log("JSON",data);
+    //   this.setState({contractAddress:data.contractAddress,ethereumWallet:data.ethereumWallet})
+    // })
+  }
   static propTypes = {
     sidebarStatic: PropTypes.bool,
     sidebarOpened: PropTypes.bool,
@@ -43,16 +65,35 @@ class Layout extends React.Component {
     sidebarStatic: false,
     sidebarOpened: false,
   };
-  constructor(props) {
-    super(props);
-    this.state=({
-      contractAddress:"loading",
-      ethereumWallet:"loading"
+
+
+  copyToClipboard = (name, data) => {
+    // const el =document.createElement('txtps');
+    // el.value = data;
+    // document.body.appendChild(el);
+    // el.querySelectorAll(0,111111111);
+    // document.execCommand("copy");
+    // document.body.removeChild(el);
+
+    navigator.clipboard.writeText(data).then(() => {
+      toast.success(name + " copied successfully", {
+        position: "bottom-right",
+        autoClose: 5000,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true
+      });
+    }).catch((err) => {
+      toast.success(err, {
+        position: "bottom-right",
+        autoClose: 5000,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true
+      });
     })
-    this.handleSwipe = this.handleSwipe.bind(this);
+
   }
-
-
   handleSwipe(e) {
     if ('ontouchstart' in window) {
       if (e.direction === 4 && !this.state.chatOpen) {
@@ -79,7 +120,7 @@ class Layout extends React.Component {
         ].join(' ')}
       >
         <div className={s.wrap}>
-          <Header />
+          {/* <Header /> */}
           {/* <Chat chatOpen={this.state.chatOpen} /> */}
           {/* <Helper /> */}
 
@@ -88,121 +129,106 @@ class Layout extends React.Component {
 
 
 
-          <Container>
-
-            <Row>
-
-              <Col lg={3} xs={6}>
-                <Widget
-                  title={<h5> Affiliate Link </h5>}
-                >
-
-                  <p style={{
-                    backgroundColor: "#2c2f46",
-                    borderRadius: "5px",
-                    display: "block", paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
-                  }}>
-                    <span style={{
-                      flex: "1",
-                      paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
-                    }} className="fw-semi-bold">{33322323233233}</span>
-
-                    {/* <small><span className="circle bg-default text-white"><i className="fa fa-chevron-down" /></span></small> */}
-
-                  </p>
-                </Widget>
-
-              </Col>
-
-              <Col lg={3} xs={6}>
-                <Widget
-                  title={<h5> Smart Contract Address </h5>}
-                >
-
-                  <p style={{
-                    backgroundColor: "#2c2f46",
-                    borderRadius: "5px",
-                    display: "block", paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
-                  }}>
-                    <span style={{
-                      flex: "1",
-                      paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
-                    }} className="fw-semi-bold">{this.state.contractAddress}</span>
-
-                    {/* <small><span className="circle bg-default text-white"><i className="fa fa-chevron-down" /></span></small> */}
-
-                  </p>
-                </Widget>
-
-              </Col>
 
 
+          <Row>
+            <Col lg={7} xs={12} style={{ paddingTop: 5, marginTop: "15px" }}>
+              {/* <h3>Today's <span className="fw-semi-bold">Winners</span></h3> */}
+              {/* <WinnerSlider /> */}
+              <Widget
+
+                title={<h4>Today's <span className="fw-semi-bold">Winners</span></h4>
+                }
+              >
+                <div className="row">
+
+                  <Row>
+                    <WinnerTile
+                      className="col"
+                      rank="1st"
+                      user={{ avatar: "https://images.pexels.com/photos/20787/pexels-photo.jpg", name: "Rachna" }}
+                      startColor={"#fdcb6e"}
+                      endColor={"#bf8415"}
+                    /></Row>
+
+                  <Row>
+                    <WinnerTile rank="2nd"
+                      className="col"
+
+                      user={{ avatar: "https://images.pexels.com/photos/20787/pexels-photo.jpg", name: "Mossajjid" }}
+                      startColor={"#BEC0C2"}
+                      endColor={"#70706F"}
+                    /></Row>
+                  <Row>
+                    <WinnerTile rank="3rd"
+                      className="col"
+
+                      user={{ avatar: "https://images.pexels.com/photos/20787/pexels-photo.jpg", name: "Neha" }}
+                      startColor={"#c31432"}
+                      endColor={"#240b36"}
+                    />
+
+                  </Row>
 
 
+                </div>
 
-              <Col lg={3} xs={4}>
-                <Widget
-                  title={<h5> Etherium Wallet </h5>}
-                >
-
-                  <p style={{
-                    backgroundColor: "#2c2f46",
-                    borderRadius: "5px",
-                    display: "block", paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
-                  }}>
-                    <span style={{
-                      flex: "1",
-                      paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
-                    }} className="fw-semi-bold">{this.state.ethereumWallet}</span>
-
-                    {/* <small><span className="circle bg-default text-white"><i className="fa fa-chevron-down" /></span></small> */}
-
-                  </p>
-                </Widget>
-              </Col>
-
-              <Col lg={3} xs={3}>
-                <Widget
-                  title={<h5> Etherium Wallet </h5>}
-                >
-
-                  <p style={{
-                    backgroundColor: "#2c2f46",
-                    borderRadius: "5px",
-                    display: "block", paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
-                  }}>
-                    <span style={{
-                      flex: "1",
-                      paddingTop: "4px", paddingBottom: "4px", paddingLeft: "10px"
-                    }} className="fw-semi-bold">33322323233233</span>
-
-                    {/* <small><span className="circle bg-default text-white"><i className="fa fa-chevron-down" /></span></small> */}
-
-                  </p>
-                </Widget>
-              </Col>
+              </Widget>
 
 
+            </Col>
 
-              {/* <Col lg={1} xs={6}/> */}
+
+            <Col lg={4} xs={12} style={{ paddingTop: 5, marginTop: "15px" }}>
+              <Widget
+
+                title={<h4>Our <span className="fw-semi-bold">Acheivements</span></h4>
+                }
+
+              >
 
 
 
 
 
 
+              
 
-            </Row>
+                <Col>
+                
+                <Row>
+
+                  <h5>All Participants</h5>
+                  <h5>123455</h5>
+                </Row>
+
+
+                <Row>
+
+                  <h5>Joined in 24 Hours</h5>
+                  <h5>123455</h5>
+                </Row>
+                
+                
+                
+                <Row>
+
+                  <h5>Participants have earned ETH</h5>
+                  <h5>123455</h5>
+                </Row>
 
 
 
+                <Row>
 
+                  <h5>Participants have earned USD</h5>
+                  <h5>123455</h5>
+                </Row>
+</Col>
+              </Widget>
+            </Col>
 
-
-          </Container>
-
-
-
+          </Row>
 
 
 
@@ -245,6 +271,7 @@ function mapStateToProps(store) {
     sidebarOpened: store.navigation.sidebarOpened,
     sidebarPosition: store.navigation.sidebarPosition,
     sidebarVisibility: store.navigation.sidebarVisibility,
+    user: store.Web3Reducer.user
   };
 }
 
