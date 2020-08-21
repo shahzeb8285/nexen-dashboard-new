@@ -38,6 +38,11 @@ class Web3Provider extends React.Component {
   }
 
 
+  buyLevel1(data,callback){
+
+    console.log('poinyyyee',data)
+    // callback("return daa")
+  }
 
   async loadWeb3() {
     if (window.ethereum) {
@@ -284,12 +289,9 @@ class Web3Provider extends React.Component {
 
 function mapStateToProps(store) {
   return {
-    // isSidebarOpened: store.navigation.sidebarOpened,
-    // sidebarVisibility: store.navigation.sidebarVisibility,
-    // sidebarPosition: store.navigation.sidebarPosition,
-    user : "jjii"
+    
   };
 }
 
-export default (connect(mapStateToProps)(Web3Provider));
+export default Web3Provider;
 

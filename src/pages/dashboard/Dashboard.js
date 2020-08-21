@@ -1,6 +1,7 @@
 import React from 'react';
 import ApexChart from 'react-apexcharts';
-import { Badge, Col, Row, Table } from 'reactstrap';
+import { Badge, Col, Row, Table, Button, Modal,Spinner,
+   ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import InfoTile from '../../components/InfoTile/InfoTile';
 import Widget from '../../components/Widget';
 import WinnerSlider from './components/WinnerSlider/WinnerSlider'
@@ -17,27 +18,8 @@ class Dashboard extends React.Component {
 
 
   async componentDidMount() {
-    // const data = await instance.data;
-    // BlockchainManager.getInstance().getUsersIncomes(1, (isError, data) => {
-    //   console.log("===============");
-    //   console.log(data,isError);
 
-    //   if (isError) {
-
-    //     console.log("error");
-    //     //handle errors
-    //     //TODO implement error notification system
-    //   } else {
-    //     this.setState({
-    //       directIncome: data.directIncome,
-    //       recycleIncome: data.recycleIncome,
-    //       levelIncome: data.levelIncome,
-    //       recycleFund: data.recycleFund,
-    //       levelFund: data.levelFund,
-    //       rewardIncome : data.rewardIncome
-    //     })
-    //   }
-    // });
+    this.initLevels()
 
   }
 
@@ -52,9 +34,14 @@ class Dashboard extends React.Component {
       levelIncome: 0,
       recycleFund: 0,
       levelFund: 0,
-      rewardIncome: 0
+      rewardIncome: 0,
+      levels: [],
+      selectedLevel: null,
+      visileBuyModal: false
     };
     this.checkTable = this.checkTable.bind(this);
+    this.Web3Ref = React.createRef();
+
   }
   checkTable(id) {
     let arr = [];
@@ -84,6 +71,120 @@ class Dashboard extends React.Component {
   }
 
 
+  initLevels() {
+    var levels = [];
+
+
+
+
+
+
+    levels.push({
+      position: 1,
+      amount: 500,
+      icon: require("../../images/levels/level2.png"),
+      isBought: false,
+      isThisNextLevel: true,
+      bgStartColor: "#621e94",
+      bgEndColor: "#240b36"
+    })
+
+    levels.push({
+      position: 2,
+      amount: 1000,
+      icon: require("../../images/levels/level2.png"),
+      isBought: false,
+      bgStartColor: "#0984e3",
+      bgEndColor: "#06508a"
+
+    })
+
+
+    levels.push({
+      position: 3,
+      amount: 1500,
+      icon: require("../../images/levels/level2.png"),
+      isBought: false,
+      bgStartColor: "#fdcb6e",
+      bgEndColor: "#bf8415"
+    })
+
+
+    levels.push({
+      position: 4,
+      amount: 2000,
+      icon: require("../../images/levels/level2.png"),
+      isBought: false,
+      bgStartColor: "#787777",
+      bgEndColor: "#a8a8a8"
+
+    })
+
+
+    levels.push({
+      position: 5,
+      amount: 2500,
+      icon: require("../../images/levels/level2.png"),
+      isBought: false,
+      bgStartColor: "#961516",
+      bgEndColor: "#d63031"
+    })
+
+
+    levels.push({
+      position: 6,
+      amount: 3000,
+      icon: require("../../images/levels/level2.png"),
+      isBought: false,
+      bgStartColor: "#0984e3",
+      bgEndColor: "#06508a"
+    })
+
+
+    levels.push({
+      position: 7,
+      amount: 3500,
+      icon: require("../../images/levels/level2.png"),
+      isBought: false,
+      bgStartColor: "#621e94",
+      bgEndColor: "#240b36"
+    })
+
+
+    levels.push({
+      position: 8,
+      amount: 4000,
+      icon: require("../../images/levels/level2.png"),
+      isBought: false,
+      bgStartColor: "#fdcb6e",
+      bgEndColor: "#bf8415"
+    })
+
+
+    levels.push({
+      position: 9,
+      amount: 4500,
+      icon: require("../../images/levels/level2.png"),
+      isBought: false,
+      bgStartColor: "#787777",
+      bgEndColor: "#a8a8a8"
+
+    })
+
+
+    levels.push({
+      position: 10,
+      amount: 5000,
+      icon: require("../../images/levels/level2.png"),
+      isBought: false,
+      bgStartColor: "#961516",
+      bgEndColor: "#d63031"
+    })
+
+
+
+    this.setState({ levels })
+  }
 
   getChartData() {
 
@@ -627,103 +728,101 @@ class Dashboard extends React.Component {
   }
 
 
-  onLevelClicked(levelNumber){
-      // console.log("LevelNumber",levelNumber);
+  onLevelClicked = (level) => {
+    console.log("LevelNumber", level);
 
-      
+    this.setState({ visileBuyModal: true, selectedLevel: level })
 
+
+  }
+
+
+  buyLevel=(level)=>{
+      console.log("fdfdfdfd",this.Web3Ref.current)
+      this.Web3Ref.current.buyLevel1("dataaa")
+    
+  }
+
+
+  renderBuyDialog() {
+    return <>
+
+      <Modal isOpen={this.state.visileBuyModal} >
+        <ModalHeader><h3 className="fw-semi-bold" >Buy Level
+            {this.state.selectedLevel ? " " + this.state.selectedLevel.position : ""}</h3></ModalHeader>
+        <ModalBody>
+
+          <Row>
+
+            <Col>
+
+
+
+              <Level
+
+
+                levelData={this.state.selectedLevel}
+                enable={true}
+                onLevelClicked={()=>{
+
+                }}
+              /></Col>
+
+
+
+            <Col>
+
+            <h2>Buy Level {this.state.selectedLevel.position}+ {" "}</h2>
+            <hr className="solid" />
+            <Row>
+
+
+              <Col>
+              <h4>Buy Level {this.state.selectedLevel.position}+ {" "}</h4>
+              <h4>Buy Level {this.state.selectedLevel.position}+ {" "}</h4>
+
+              </Col>
+
+              {/* <Spinner color="secondary" /> */}
+
+
+              <Col>
+              <h4>Buy Level {this.state.selectedLevel.position}+ {" "}</h4>
+              <h4>Buy Level {this.state.selectedLevel.position}+ {" "}</h4>
+
+              </Col>
+            </Row>
+
+            </Col>
+
+
+
+
+          </Row>
+
+        </ModalBody>
+        <ModalFooter>
+          <Button color="primary" onClick={()=>{
+            this.buyLevel(this.state.selectedLevel)
+          }} >Pay
+            {this.state.selectedLevel ? " " + this.state.selectedLevel.amount + " TRX" : ""}</Button>{' '}
+
+
+          <Button color="danger" onClick={() => {
+            this.setState({ visileBuyModal: false })
+          }}>Cancel</Button>
+        </ModalFooter>
+      </Modal>
+
+    </>
   }
 
   render() {
     return (
       <>
 
-        <Web3Provider />
-        {/* <Particles style={{
-          position: "absolute",
-          "top": 0, "left": 0, "z-index": 1
-        }}
-        
-        
-        
-        particlesRef={{
-          background: {
-            color: {
-              value: "#0d47a1",
-            },
-          },
-          fpsLimit: 60,
-          interactivity: {
-            detectsOn: "canvas",
-            events: {
-              onClick: {
-                enable: true,
-                mode: "push",
-              },
-              onHover: {
-                enable: true,
-                mode: "repulse",
-              },
-              resize: true,
-            },
-            modes: {
-              bubble: {
-                distance: 400,
-                duration: 2,
-                opacity: 0.8,
-                size: 40,
-              },
-              push: {
-                quantity: 4,
-              },
-              repulse: {
-                distance: 200,
-                duration: 0.4,
-              },
-            },
-          },
-          particles: {
-            color: {
-              value: "#ffffff",
-            },
-            links: {
-              color: "#ffffff",
-              distance: 150,
-              enable: true,
-              opacity: 0.5,
-              width: 1,
-            },
-            collisions: {
-              enable: true,
-            },
-            move: {
-              direction: "none",
-              enable: true,
-              outMode: "bounce",
-              random: false,
-              speed: 6,
-              straight: false,
-            },
-            number: {
-              density: {
-                enable: true,
-                value_area: 800,
-              },
-              value: 80,
-            },
-            opacity: {
-              value: 0.5,
-            },
-            shape: {
-              type: "circle",
-            },
-            size: {
-              random: true,
-              value: 5,
-            },
-          },
-          detectRetina: true,
-        }}/> */}
+        <Web3Provider  ref={this.Web3Ref }/>
+
 
         <div className={s.root}>
           <small>
@@ -732,6 +831,8 @@ class Dashboard extends React.Component {
 
 
 
+
+          {this.state.visileBuyModal ? this.renderBuyDialog() : null}
 
 
 
@@ -841,7 +942,7 @@ class Dashboard extends React.Component {
 
                     primaryTitle={"Recycle Fund"}
                     secondaryTitle={"Total Recycle"}
-                    
+
                     primaryAmount={this.props.user.funds ? this.props.user.funds.recycleFund : "0x"}
                     secondaryAmount={this.props.user ? this.props.user.totalRecycles : "0x"}
                     bgStartColor={"#d35400"}
@@ -897,63 +998,50 @@ class Dashboard extends React.Component {
 
             <Row>
 
+
+
+
               <Level
-                bgStartColor={"#621e94"}
-                bgEndColor={"#240b36"}
-                icon={require("../../images/levels/level2.png")}
-                label={"point"}
-                levelPosition={"1st"}
-                isBought={false}
-                amount={700}
-                levelNumber={1}
+
+
+                levelData={this.state.levels.length != 0 ? this.state.levels[0] : null}
                 onLevelClicked={this.onLevelClicked}
               />
 
               <Level
-                bgStartColor={"#0984e3"}
-                bgEndColor={"#06508a"}
-                icon={require("../../images/levels/level1.png")}
-                levelPosition={"2nd"}
-                levelNumber={2}
+
+
                 onLevelClicked={this.onLevelClicked}
-                label={"point"}
-                isBought={false}
-                amount={700}
+
+                levelData={this.state.levels.length != 0 ? this.state.levels[1] : null}
+
               />
 
               <Level
-                bgStartColor={"#fdcb6e"}
-                bgEndColor={"#bf8415"}
-                icon={require("../../images/levels/level1.png")}
-                levelPosition={"3rd"}
-                levelNumber={3}
+
+
                 onLevelClicked={this.onLevelClicked}
-                label={"point"}
-                isBought={false}
-                amount={700}
+
+                levelData={this.state.levels.length != 0 ? this.state.levels[2] : null}
+
               />
 
 
               <Level
-                bgStartColor={"#787777"}
-                bgEndColor={"#a8a8a8"}
-                icon={require("../../images/levels/level1.png")}
-                levelPosition={"4th"}
 
-                label={"point"}
-                isBought={false}
-                amount={700}
+
+                levelData={this.state.levels.length != 0 ? this.state.levels[3] : null}
+                onLevelClicked={this.onLevelClicked}
+
+
               />
 
               <Level
-                bgStartColor={"#961516"}
-                bgEndColor={"#d63031"}
-                icon={require("../../images/levels/level1.png")}
-                levelPosition={"5th"}
 
-                label={"point"}
-                isBought={false}
-                amount={700}
+
+                levelData={this.state.levels.length != 0 ? this.state.levels[4] : null}
+                onLevelClicked={this.onLevelClicked}
+
               />
             </Row>
 
@@ -961,58 +1049,46 @@ class Dashboard extends React.Component {
             <Row>
 
               <Level
-                bgStartColor={"#621e94"}
-                bgEndColor={"#240b36"}
-                icon={require("../../images/levels/level2.png")}
-                label={"point"}
-                levelPosition={"6th"}
-                isBought={false}
-                amount={700}
+
+
+                onLevelClicked={this.onLevelClicked}
+
+                levelData={this.state.levels.length != 0 ? this.state.levels[5] : null}
               />
 
               <Level
-                bgStartColor={"#0984e3"}
-                bgEndColor={"#06508a"}
-                icon={require("../../images/levels/level1.png")}
-                levelPosition={"7th"}
 
-                label={"point"}
-                isBought={false}
-                amount={700}
+                levelData={this.state.levels.length != 0 ? this.state.levels[6] : null}
+
+                onLevelClicked={this.onLevelClicked}
+
+
               />
 
               <Level
-                bgStartColor={"#fdcb6e"}
-                bgEndColor={"#bf8415"}
-                icon={require("../../images/levels/level1.png")}
-                levelPosition={"8th"}
 
-                label={"point"}
-                isBought={false}
-                amount={700}
+                levelData={this.state.levels.length != 0 ? this.state.levels[7] : null}
+
+                onLevelClicked={this.onLevelClicked}
+
+
               />
 
 
               <Level
-                bgStartColor={"#787777"}
-                bgEndColor={"#a8a8a8"}
-                icon={require("../../images/levels/level1.png")}
-                levelPosition={"9th"}
 
-                label={"point"}
-                isBought={false}
-                amount={700}
+                levelData={this.state.levels.length != 0 ? this.state.levels[8] : null}
+
+                onLevelClicked={this.onLevelClicked}
+
               />
 
               <Level
-                bgStartColor={"#961516"}
-                bgEndColor={"#d63031"}
-                icon={require("../../images/levels/level1.png")}
-                levelPosition={"10th"}
 
-                label={"point"}
-                isBought={false}
-                amount={700}
+                levelData={this.state.levels.length != 0 ? this.state.levels[9] : null}
+
+                onLevelClicked={this.onLevelClicked}
+
               />
             </Row>
 

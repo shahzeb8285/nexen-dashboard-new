@@ -256,6 +256,31 @@ $z-index-variants: (more: 1, less: -1, '10': 10, '-10': -10);
   from {transform:rotate(0deg);}
   to {transform:rotate(360deg);}
 }
+
+
+
+.shiver {
+  // animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  // animation: 1s shine infinite alternate;
+  animation: shake 2s  infinite cubic-bezier(.12,.89,.98,.47);
+
+}
+
+
+@keyframes shake {
+  0% { transform: skewX(-15deg); }
+  5% { transform: skewX(15deg); }
+  10% { transform: skewX(-15deg); }
+  15% { transform: skewX(15deg); }
+  20% { transform: skewX(0deg); }
+  100% { transform: skewX(0deg); }  
+}
+
+
+
 .text-ellipsis {
   display: block;
   white-space: nowrap;
