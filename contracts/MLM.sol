@@ -387,7 +387,8 @@ contract MLM {
         uint256 totalRecycles,
         uint256 totalWins,
         uint256 levelsPurchased,
-        uint256 loss
+        uint256 loss,
+        uint256 id
         )
     {
         User memory user = users[users_ids[_id]];
@@ -397,7 +398,8 @@ contract MLM {
             user.totalRecycles,
             user.totalWins,
             user.levelsPurchased,
-            user.loss
+            user.loss,
+            user.id
         );
     }
     

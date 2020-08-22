@@ -13,6 +13,8 @@ import { Col, Container, Row } from 'reactstrap';
 import Widget from '../../components/Widget';
 import avatar from '../../images/people/a5.jpg';
 import { toast } from 'react-toastify';
+import eth from '../../images/1 copy.png';
+import './Sidebar.scss';
 
 
 class Sidebar extends React.Component {
@@ -171,7 +173,23 @@ class Sidebar extends React.Component {
                     <hr className="solid" />
 
 
+                    <div className="id">
+                <div className="id__header" >
+                     <h3>Id {this.props.user ? this.props.user.id : "0"}</h3>
+                </div>
+                <div className="eth">
+                   <img src={eth} ></img>
+                   <div className="value">
+                       <h4>3</h4>
+                       
+                       <h4>$123</h4>
 
+                   </div>
+                </div>
+                <div className="id__btn">
+                    <h4>0.35 eth</h4>
+                </div>
+            </div>
 
 
 

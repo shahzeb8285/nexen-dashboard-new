@@ -29,8 +29,8 @@ class Web3Provider extends React.Component {
   async componentDidMount() {
     await this.loadWeb3();
     await this.loadBlockchainData();
-    await this.initUsersFunds(1);
-    await this.initUser(1)
+    await this.initUsersFunds(2);
+    await this.initUser(2)
 
 
 
@@ -120,6 +120,7 @@ class Web3Provider extends React.Component {
           totalWins: User[3],
           levelsPurchased: User[4],
           loss:User[5],
+          id:User[6],
 
           walletAddress: this.state.walletAddress,
           contractAddress: this.state.contractAddress
