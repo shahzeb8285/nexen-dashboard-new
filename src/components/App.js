@@ -14,6 +14,9 @@ import LayoutComponent from '../components/Layout';
 import Login from '../pages/login';
 import Register from '../pages/register';
 import { logoutUser } from '../actions/user';
+import Profile from '../pages/Profile/Profile';
+import NotFound from '../pages/NotFound/NotFound';
+import Error from '../pages/Error/Error';
 
 const PrivateRoute = ({dispatch, component, ...rest }) => {
     if (!Login.isAuthenticated(JSON.parse(localStorage.getItem('authenticated')))) {
@@ -133,6 +136,7 @@ class App extends React.PureComponent {
             />
             <HashRouter>
                 <Switch>
+                <Route path="/app/profile" exact component={Error}/>
                     <Route path="/" exact render={() => <Redirect to="/app/main"/>}/>
                     <Route path="/app" exact render={() => <Redirect to="/app/main"/>}/>
                     <PrivateRoute path="/app" dispatch={this.props.dispatch} component={LayoutComponent}/>
