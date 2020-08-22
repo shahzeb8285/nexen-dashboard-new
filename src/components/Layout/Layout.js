@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import PropTypes from 'prop-types';
 import Hammer from 'rc-hammerjs';
 import React from 'react';
@@ -22,22 +23,55 @@ import Sidebar from '../Sidebar';
 import s from './Layout.module.scss';
 import { toast } from 'react-toastify';
 import WinnerTile from '../../pages/dashboard/components/WinnerSlider/WinnerTile'
+=======
+import PropTypes from "prop-types";
+import Hammer from "rc-hammerjs";
+import React from "react";
+import { connect } from "react-redux";
+import { Redirect, Route, Switch, withRouter } from "react-router";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { Col, Container, Row } from "reactstrap";
+import { closeSidebar, openSidebar } from "../../actions/navigation";
+import { incomeFetched, userFetched } from "../../actions/web3Actions";
+import WinnerSlider from "../../pages/dashboard/components/WinnerSlider/WinnerSlider";
+import {
+  Badge,
+  Table,
+  Button,
+  Modal,
+  Spinner,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+} from "reactstrap";
+import Widget from "../../components/Widget";
+import Charts from "../../pages/components/charts/Charts";
+import UIIcons from "../../pages/components/icons";
+import MapsGoogle from "../../pages/components/maps/google";
+import Dashboard from "../../pages/dashboard";
+import UINotifications from "../../pages/notifications";
+import TablesStatic from "../../pages/tables/static";
+import CoreTypography from "../../pages/typography";
+import Header from "../Header";
+import Sidebar from "../Sidebar";
+import s from "./Layout.module.scss";
+import { toast } from "react-toastify";
+import WinnerTile from "../../pages/dashboard/components/WinnerSlider/WinnerTile";
+>>>>>>> origin/mosajjid
 // import BlockchainManager from '../../utils/BlockchainManager';
-
 
 class Layout extends React.Component {
   constructor(props) {
     super(props);
-    this.state = ({
+    this.state = {
       contractAddress: "0x",
-      ethereumWallet: "0x"
-    })
+      ethereumWallet: "0x",
+    };
     this.handleSwipe = this.handleSwipe.bind(this);
   }
 
   async componentDidMount() {
-
-    console.log("fffffffffff", this.props)
+    console.log("fffffffffff", this.props);
     // const instance = await BlockchainManager.getInstance();
     // console.log(instance);
     // const data = instance.data;
@@ -48,7 +82,6 @@ class Layout extends React.Component {
     // this.setState({
     //   contractAddress : contractaddress
     // })
-
 
     // instance.getUserBlockChainDetails((data)=>{
     //   console.log("JSON",data);
@@ -66,7 +99,6 @@ class Layout extends React.Component {
     sidebarOpened: false,
   };
 
-
   copyToClipboard = (name, data) => {
     // const el =document.createElement('txtps');
     // el.value = data;
@@ -75,27 +107,29 @@ class Layout extends React.Component {
     // document.execCommand("copy");
     // document.body.removeChild(el);
 
-    navigator.clipboard.writeText(data).then(() => {
-      toast.success(name + " copied successfully", {
-        position: "bottom-right",
-        autoClose: 5000,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true
+    navigator.clipboard
+      .writeText(data)
+      .then(() => {
+        toast.success(name + " copied successfully", {
+          position: "bottom-right",
+          autoClose: 5000,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+        });
+      })
+      .catch((err) => {
+        toast.success(err, {
+          position: "bottom-right",
+          autoClose: 5000,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+        });
       });
-    }).catch((err) => {
-      toast.success(err, {
-        position: "bottom-right",
-        autoClose: 5000,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true
-      });
-    })
-
-  }
+  };
   handleSwipe(e) {
-    if ('ontouchstart' in window) {
+    if ("ontouchstart" in window) {
       if (e.direction === 4 && !this.state.chatOpen) {
         this.props.dispatch(openSidebar());
         return;
@@ -115,124 +149,121 @@ class Layout extends React.Component {
       <div
         className={[
           s.root,
-          'sidebar-' + this.props.sidebarPosition,
-          'sidebar-' + this.props.sidebarVisibility,
-        ].join(' ')}
+          "sidebar-" + this.props.sidebarPosition,
+          "sidebar-" + this.props.sidebarVisibility,
+        ].join(" ")}
       >
         <div className={s.wrap}>
           {/* <Header /> */}
           {/* <Chat chatOpen={this.state.chatOpen} /> */}
           {/* <Helper /> */}
 
-
           <Sidebar />
-
-
-
-
 
           <Row>
             <Col lg={7} xs={12} style={{ paddingTop: 5, marginTop: "15px" }}>
               {/* <h3>Today's <span className="fw-semi-bold">Winners</span></h3> */}
               {/* <WinnerSlider /> */}
               <Widget
-
-                title={<h4>Today's <span className="fw-semi-bold">Winners</span></h4>
+                title={
+                  <h4>
+                    Today's <span className="fw-semi-bold">Winners</span>
+                  </h4>
                 }
               >
                 <div className="row">
-
                   <Row>
                     <WinnerTile
                       className="col"
                       rank="1st"
-                      user={{ avatar: "https://images.pexels.com/photos/20787/pexels-photo.jpg", name: "Rachna" }}
+                      user={{
+                        avatar:
+                          "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+                        name: "Rachna",
+                      }}
                       startColor={"#fdcb6e"}
                       endColor={"#bf8415"}
-                    /></Row>
+                    />
+                  </Row>
 
                   <Row>
-                    <WinnerTile rank="2nd"
+                    <WinnerTile
+                      rank="2nd"
                       className="col"
-
-                      user={{ avatar: "https://images.pexels.com/photos/20787/pexels-photo.jpg", name: "Mossajjid" }}
+                      user={{
+                        avatar:
+                          "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+                        name: "Mossajjid",
+                      }}
                       startColor={"#BEC0C2"}
                       endColor={"#70706F"}
-                    /></Row>
+                    />
+                  </Row>
                   <Row>
-                    <WinnerTile rank="3rd"
+                    <WinnerTile
+                      rank="3rd"
                       className="col"
-
-                      user={{ avatar: "https://images.pexels.com/photos/20787/pexels-photo.jpg", name: "Neha" }}
+                      user={{
+                        avatar:
+                          "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+                        name: "Neha",
+                      }}
                       startColor={"#c31432"}
                       endColor={"#240b36"}
                     />
-
                   </Row>
-
-
                 </div>
-
               </Widget>
-
-
             </Col>
-
 
             <Col lg={4} xs={12} style={{ paddingTop: 5, marginTop: "15px" }}>
               <Widget
-
-                title={<h4>Our <span className="fw-semi-bold">Acheivements</span></h4>
+                title={
+                  <h4>
+                    Our <span className="fw-semi-bold">Acheivements</span>
+                  </h4>
                 }
-
               >
-
-
-
-
-
-
-              
-
                 <Col>
-                
-                <Row>
+                  <Row>
+                    <h5 style={{ color: "yellow", fontWeight: "600" }}>
+                      All Participants
+                    </h5>
+                    <h5 style={{ color: "#72dd97", fontSize: "x-large" }}>
+                      123455
+                    </h5>
+                  </Row>
 
-                  <h5>All Participants</h5>
-                  <h5>123455</h5>
-                </Row>
+                  <Row>
+                    <h5 style={{ color: "white", fontWeight: "600" }}>
+                      Joined in 24 Hours
+                    </h5>
+                    <h5 style={{ color: "#ff1616", fontSize: "x-large" }}>
+                      123455
+                    </h5>
+                  </Row>
 
+                  <Row>
+                    <h5 style={{ color: "yellow", fontWeight: "600" }}>
+                      Participants have earned ETH
+                    </h5>
+                    <h5 style={{ color: "#b2ecef", fontSize: "x-large" }}>
+                      123455
+                    </h5>
+                  </Row>
 
-                <Row>
-
-                  <h5>Joined in 24 Hours</h5>
-                  <h5>123455</h5>
-                </Row>
-                
-                
-                
-                <Row>
-
-                  <h5>Participants have earned ETH</h5>
-                  <h5>123455</h5>
-                </Row>
-
-
-
-                <Row>
-
-                  <h5>Participants have earned USD</h5>
-                  <h5>123455</h5>
-                </Row>
-</Col>
+                  <Row>
+                    <h5 style={{ color: "#10f171", fontWeight: "600" }}>
+                      Participants have earned USD
+                    </h5>
+                    <h5 style={{ color: "#f6c362", fontSize: "x-large" }}>
+                      123455
+                    </h5>
+                  </Row>
+                </Col>
               </Widget>
             </Col>
-
           </Row>
-
-
-
-
 
           <Hammer onSwipe={this.handleSwipe}>
             <main className={s.content}>
@@ -245,21 +276,41 @@ class Layout extends React.Component {
                   timeout={200}
                 >
                   <Switch>
+<<<<<<< HEAD
 
 
                     <Route path="/" exact render={() => <Redirect to="/dashboard" />} />
                     <Route path="/dashboard" exact component={Dashboard} />
+=======
+                    <Route
+                      path="/app/main"
+                      exact
+                      render={() => <Redirect to="/app/main/dashboard" />}
+                    />
+                    <Route
+                      path="/app/main/dashboard"
+                      exact
+                      component={Dashboard}
+                    />
+>>>>>>> origin/mosajjid
                     <Route path="/app/icons" exact component={UIIcons} />
-                    <Route path="/app/notifications" exact component={UINotifications} />
+                    <Route
+                      path="/app/notifications"
+                      exact
+                      component={UINotifications}
+                    />
                     <Route path="/app/charts" exact component={Charts} />
                     <Route path="/dashboard/tables" exact component={TablesStatic} />
                     <Route path="/app/maps" exact component={MapsGoogle} />
-                    <Route path="/app/typography" exact component={CoreTypography} />
+                    <Route
+                      path="/app/typography"
+                      exact
+                      component={CoreTypography}
+                    />
                   </Switch>
                 </CSSTransition>
               </TransitionGroup>
-              <footer className={s.contentFooter}>
-              </footer>
+              <footer className={s.contentFooter}></footer>
             </main>
           </Hammer>
         </div>
@@ -273,7 +324,7 @@ function mapStateToProps(store) {
     sidebarOpened: store.navigation.sidebarOpened,
     sidebarPosition: store.navigation.sidebarPosition,
     sidebarVisibility: store.navigation.sidebarVisibility,
-    user: store.Web3Reducer.user
+    user: store.Web3Reducer.user,
   };
 }
 

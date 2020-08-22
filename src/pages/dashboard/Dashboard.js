@@ -1006,9 +1006,10 @@ levelData={this.props.user.levels? this.props.user.levels[9] : null}
           </Widget>
 
 
+           <UserTree></UserTree>
 
           <Row>
-            <Col >
+            <Col>
               <Widget
                 title={""}
               >
