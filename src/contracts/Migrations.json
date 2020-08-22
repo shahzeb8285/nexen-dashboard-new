@@ -50,15 +50,15 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.1+commit.c8a2cb62\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"last_completed_migration\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"completed\",\"type\":\"uint256\"}],\"name\":\"setCompleted\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/shandroid/Desktop/bird/client/RajBhai/dashboard2/light-blue-react-template/contracts/Migrations.sol\":\"Migrations\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/shandroid/Desktop/bird/client/RajBhai/dashboard2/light-blue-react-template/contracts/Migrations.sol\":{\"keccak256\":\"0xe04e2fb3d39d415aa4d2368410c1e9f8937cdda2d99d2e412cb45b9d13ce9ec8\",\"urls\":[\"bzzr://e23ae34942cf4f6e8f017c12dc49c09f75160ce53c70f2c008b118a92710f229\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b50336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506101ca806100606000396000f3fe608060405260043610610051576000357c010000000000000000000000000000000000000000000000000000000090048063445df0ac146100565780638da5cb5b14610081578063fdacd576146100d8575b600080fd5b34801561006257600080fd5b5061006b610113565b6040518082815260200191505060405180910390f35b34801561008d57600080fd5b50610096610119565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b3480156100e457600080fd5b50610111600480360360208110156100fb57600080fd5b810190808035906020019092919050505061013e565b005b60015481565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141561019b57806001819055505b5056fea165627a7a7230582098a2da78df78eea5a3ccc76238d8936e5925bb08119d9f0be02f2ac2a9ddbed80029",
-  "deployedBytecode": "0x608060405260043610610051576000357c010000000000000000000000000000000000000000000000000000000090048063445df0ac146100565780638da5cb5b14610081578063fdacd576146100d8575b600080fd5b34801561006257600080fd5b5061006b610113565b6040518082815260200191505060405180910390f35b34801561008d57600080fd5b50610096610119565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b3480156100e457600080fd5b50610111600480360360208110156100fb57600080fd5b810190808035906020019092919050505061013e565b005b60015481565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141561019b57806001819055505b5056fea165627a7a7230582098a2da78df78eea5a3ccc76238d8936e5925bb08119d9f0be02f2ac2a9ddbed80029",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.1+commit.c8a2cb62\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"last_completed_migration\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"completed\",\"type\":\"uint256\"}],\"name\":\"setCompleted\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/khanmosajjid/nexen-dashboard-new/contracts/Migrations.sol\":\"Migrations\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/khanmosajjid/nexen-dashboard-new/contracts/Migrations.sol\":{\"keccak256\":\"0xe04e2fb3d39d415aa4d2368410c1e9f8937cdda2d99d2e412cb45b9d13ce9ec8\",\"urls\":[\"bzzr://e23ae34942cf4f6e8f017c12dc49c09f75160ce53c70f2c008b118a92710f229\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506101ca806100606000396000f3fe608060405260043610610051576000357c010000000000000000000000000000000000000000000000000000000090048063445df0ac146100565780638da5cb5b14610081578063fdacd576146100d8575b600080fd5b34801561006257600080fd5b5061006b610113565b6040518082815260200191505060405180910390f35b34801561008d57600080fd5b50610096610119565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b3480156100e457600080fd5b50610111600480360360208110156100fb57600080fd5b810190808035906020019092919050505061013e565b005b60015481565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141561019b57806001819055505b5056fea165627a7a723058206cf43efe7dd5be4fdc53fe60d50497dff356546919a91ee9affa7e54419ba2c70029",
+  "deployedBytecode": "0x608060405260043610610051576000357c010000000000000000000000000000000000000000000000000000000090048063445df0ac146100565780638da5cb5b14610081578063fdacd576146100d8575b600080fd5b34801561006257600080fd5b5061006b610113565b6040518082815260200191505060405180910390f35b34801561008d57600080fd5b50610096610119565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b3480156100e457600080fd5b50610111600480360360208110156100fb57600080fd5b810190808035906020019092919050505061013e565b005b60015481565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141561019b57806001819055505b5056fea165627a7a723058206cf43efe7dd5be4fdc53fe60d50497dff356546919a91ee9affa7e54419ba2c70029",
   "sourceMap": "66:311:1:-;;;155:50;8:9:-1;5:2;;;30:1;27;20:12;5:2;155:50:1;190:10;182:5;;:18;;;;;;;;;;;;;;;;;;66:311;;;;;;",
   "deployedSourceMap": "66:311:1:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;114:36;;8:9:-1;5:2;;;30:1;27;20:12;5:2;114:36:1;;;:::i;:::-;;;;;;;;;;;;;;;;;;;90:20;;8:9:-1;5:2;;;30:1;27;20:12;5:2;90:20:1;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;272:103;;8:9:-1;5:2;;;30:1;27;20:12;5:2;272:103:1;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;272:103:1;;;;;;;;;;;;;;;;;:::i;:::-;;114:36;;;;:::o;90:20::-;;;;;;;;;;;;;:::o;272:103::-;255:5;;;;;;;;;;;241:19;;:10;:19;;;237:26;;;361:9;334:24;:36;;;;237:26;272:103;:::o",
   "source": "// SPDX-License-Identifier: MIT\npragma solidity >=0.4.21 <0.7.0;\n\ncontract Migrations {\n  address public owner;\n  uint public last_completed_migration;\n\n  constructor() public {\n    owner = msg.sender;\n  }\n\n  modifier restricted() {\n    if (msg.sender == owner) _;\n  }\n\n  function setCompleted(uint completed) public restricted {\n    last_completed_migration = completed;\n  }\n}\n",
-  "sourcePath": "/home/shandroid/Desktop/bird/client/RajBhai/dashboard2/light-blue-react-template/contracts/Migrations.sol",
+  "sourcePath": "/home/khanmosajjid/nexen-dashboard-new/contracts/Migrations.sol",
   "ast": {
-    "absolutePath": "/home/shandroid/Desktop/bird/client/RajBhai/dashboard2/light-blue-react-template/contracts/Migrations.sol",
+    "absolutePath": "/home/khanmosajjid/nexen-dashboard-new/contracts/Migrations.sol",
     "exportedSymbols": {
       "Migrations": [
         2190
@@ -469,7 +469,7 @@
     "src": "32:346:1"
   },
   "legacyAST": {
-    "absolutePath": "/home/shandroid/Desktop/bird/client/RajBhai/dashboard2/light-blue-react-template/contracts/Migrations.sol",
+    "absolutePath": "/home/khanmosajjid/nexen-dashboard-new/contracts/Migrations.sol",
     "exportedSymbols": {
       "Migrations": [
         2190
@@ -1021,10 +1021,16 @@
       "links": {},
       "address": "0x842562a7c4D0Fc1a11098f3845C05d2F8E038f44",
       "transactionHash": "0x3027e2e5dc4ee3cb532daf30492ad852f3bab96fd23e7cc1afa47b4c35603885"
+    },
+    "1598075975081": {
+      "events": {},
+      "links": {},
+      "address": "0x0A1fBbB7515f56413217Db9F59d6002C12096298",
+      "transactionHash": "0x847e59e8d57aa1a1a1f045695306b8f1082dcf8f7428eae7a8308b04313c74fc"
     }
   },
-  "schemaVersion": "3.2.3",
-  "updatedAt": "2020-08-20T12:43:10.974Z",
+  "schemaVersion": "3.1.0",
+  "updatedAt": "2020-08-22T07:07:15.878Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}
