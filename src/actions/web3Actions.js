@@ -1,7 +1,7 @@
 
 export const USER_FETCHED = 'USER_FETCHED';
 export const INCOME_FETCHED = 'INCOME_FETCHED';
-export const LEVEL_BOUGHT = 'LEVEL_BOUGHT';
+export const LEVEL_UPDATED = 'LEVEL_UPDATED';
 
 export function incomeFetched(income) {
     return (dispatch) => {
@@ -26,14 +26,12 @@ export function userFetched(user) {
 }
 
 
-export function onLevelBought(level,amount) {
+
+export function onLevelUpdated(levels) {
     return (dispatch) => {
         dispatch({
-            type: LEVEL_BOUGHT,
-            cart:{
-                level,
-                amount
-            }
+            type: LEVEL_UPDATED,
+            levels
 
         });
 

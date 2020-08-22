@@ -5,8 +5,9 @@ import { connect } from 'react-redux';
 
 import MLM from "../../contracts/MLM.json";
 import Web3 from "web3";
-import { incomeFetched, userFetched } from "../../actions/web3Actions";
+import { incomeFetched, userFetched, onLevelUpdated } from "../../actions/web3Actions";
 import { toast } from 'react-toastify';
+import { compose } from 'redux';
 
 
 class Web3Provider extends React.Component {
@@ -29,8 +30,11 @@ class Web3Provider extends React.Component {
   async componentDidMount() {
     await this.loadWeb3();
     await this.loadBlockchainData();
-    await this.initUsersFunds(1);
-    await this.initUser(1)
+    if (!this.state.InitError) {
+      await this.initUsersFunds(2);
+      await this.initUser(2)
+    }
+
 
 
 
@@ -38,11 +42,6 @@ class Web3Provider extends React.Component {
   }
 
 
-  buyLevel1(data,callback){
-
-    console.log('poinyyyee',data)
-    // callback("return daa")
-  }
 
   async loadWeb3() {
     if (window.ethereum) {
@@ -51,9 +50,13 @@ class Web3Provider extends React.Component {
     } else if (window.web3) {
       window.web3 = new Web3(window.web3.currentProvider);
     } else {
-      window.alert(
-        "Non-Ethereum browser detected. You should consider trying MetaMask!"
-      );
+      // window.alert(
+      //   "Non-Ethereum browser detected. You should consider trying MetaMask!"
+      // );
+
+      this.makeErrorToast("Non-Ethereum browser detected. You should consider trying MetaMask!"
+      )
+      this.setState({ InitError: true })
     }
   }
 
@@ -96,17 +99,154 @@ class Web3Provider extends React.Component {
     }
   }
 
+
+
+
+
+  getLevels(levelNumber) {
+    console.log("^^^^^^^^^^^^^^^^", levelNumber)
+    var levels = [];
+
+
+    levels.push({
+      position: 1,
+      amount: 50000000000000000,
+      icon: require("../../images/levels/l1.png"),
+      isBought: levelNumber >= 1,
+      amountTag: "0.05",
+
+      bgStartColor: "#621e94",
+      bgEndColor: "#240b36"
+    })
+
+    levels.push({
+      position: 2,
+      amount: 100000000000000000,
+      icon: require("../../images/levels/l2.png"),
+      isBought: levelNumber >= 2,
+      amountTag: "0.10",
+
+      bgStartColor: "#0984e3",
+      bgEndColor: "#06508a"
+
+    })
+
+
+    levels.push({
+      position: 3,
+      amount: 150000000000000000,
+      amountTag: "0.15",
+
+      icon: require("../../images/levels/l3.png"),
+      isBought: levelNumber >= 3,
+      bgStartColor: "#fdcb6e",
+      bgEndColor: "#bf8415",
+
+    })
+
+
+    levels.push({
+      position: 4,
+      amount: 2000,
+      amountTag: "0.20",
+
+      icon: require("../../images/levels/l4.png"),
+      isBought: levelNumber >= 4,
+      bgStartColor: "#787777",
+      bgEndColor: "#a8a8a8"
+
+    })
+
+
+    levels.push({
+      position: 5,
+      amount: 2500,
+      icon: require("../../images/levels/l5.png"),
+      isBought: levelNumber >= 5,
+      amountTag: "0.25",
+
+      bgStartColor: "#961516",
+      bgEndColor: "#d63031"
+    })
+
+
+    levels.push({
+      position: 6,
+      amount: 3000,
+      amountTag: "0.30",
+
+      icon: require("../../images/levels/l6.png"),
+      isBought: levelNumber >= 6,
+      bgStartColor: "#0984e3",
+      bgEndColor: "#06508a"
+    })
+
+
+    levels.push({
+      position: 7,
+      amount: 3500,
+      icon: require("../../images/levels/l7.png"),
+      isBought: levelNumber >= 7,
+      amountTag: "0.35",
+
+      bgStartColor: "#621e94",
+      bgEndColor: "#240b36"
+    })
+
+
+    levels.push({
+      position: 8,
+      amount: 4000,
+      amountTag: "0.40",
+
+      icon: require("../../images/levels/l8.png"),
+      isBought: levelNumber >= 8,
+      bgStartColor: "#fdcb6e",
+      bgEndColor: "#bf8415"
+    })
+
+
+    levels.push({
+      position: 9,
+      amount: 4500,
+      amountTag: "0.45",
+
+      icon: require("../../images/levels/l9.png"),
+      isBought: levelNumber >= 9,
+      bgStartColor: "#787777",
+      bgEndColor: "#a8a8a8"
+
+    })
+
+
+    levels.push({
+      position: 10,
+      amountTag: "0.50",
+
+      amount: 5000,
+      icon: require("../../images/levels/l10.png"),
+      isBought: levelNumber >= 10,
+      bgStartColor: "#961516",
+      bgEndColor: "#d63031"
+    })
+
+    var level = levels[levelNumber]
+    level.isThisNextLevel = true
+    return levels
+
+  }
+
   async  initUser(referalId) {
     console.log("initUser")
     if (!this.state.mlm) {
       return
     }
 
-    console.log("initUser","Gggg")
+    console.log("initUser", "Gggg")
 
     const web3 = window.web3;
     const mlm = this.state.mlm;
-    console.log("mlmmmm",mlm)
+    console.log("mlmmmm", mlm)
     mlm.methods.getUserInfo(referalId).call().then((User) => {
 
       mlm.methods.getUsersIncomes(referalId).call().then((income) => {
@@ -124,7 +264,7 @@ class Web3Provider extends React.Component {
           totalRecycles: User[2],
           totalWins: User[3],
           levelsPurchased: User[4],
-          loss:User[5],
+          loss: User[5],
 
           walletAddress: this.state.walletAddress,
           contractAddress: this.state.contractAddress
@@ -134,15 +274,15 @@ class Web3Provider extends React.Component {
         var ri = income.recycleIncome;
         var li = income.levelIncome;
         var rewi = income.rewardIncome;
- 
-        console.log("rewardIncome",)
+
+        console.log("rewardIncome")
         var income = {
 
           directIncome: web3.utils.fromWei(di.toString(), "ether"),
           recycleIncome: web3.utils.fromWei(ri.toString(), "ether"),
           levelIncome: web3.utils.fromWei(li.toString(), "ether"),
-          levelFund:"test",
-          rewardIncome : web3.utils.fromWei(rewi.toString(),"ether")
+          levelFund: "test",
+          rewardIncome: web3.utils.fromWei(rewi.toString(), "ether")
         };
 
 
@@ -152,6 +292,8 @@ class Web3Provider extends React.Component {
         // }
         user.income = income;
         user.funds = this.state.funds;
+
+        user.levels = this.getLevels(user.levelsPurchased)
         console.log("=======================", user)
         this.setState({ user })
         this.props.dispatch(userFetched(user));
@@ -175,22 +317,22 @@ class Web3Provider extends React.Component {
   async initUsersFunds(referalId) {
     const web3 = window.web3;
     const mlm = this.state.mlm;
-    mlm.methods.getUsersFunds(referalId).call().then((user)=> {
-        var rf = user.recycleFund;
-        var lf = user.levelFund;
-        var funds={
-            recycleFund: web3.utils.fromWei(rf.toString(),"ether"),
-            levelFund: web3.utils.fromWei(lf.toString(),"ether")
-        };
+    mlm.methods.getUsersFunds(referalId).call().then((user) => {
+      var rf = user.recycleFund;
+      var lf = user.levelFund;
+      var funds = {
+        recycleFund: web3.utils.fromWei(rf.toString(), "ether"),
+        levelFund: web3.utils.fromWei(lf.toString(), "ether")
+      };
 
-        this.setState({funds})
-        // callback(false,income);
+      this.setState({ funds })
+      // callback(false,income);
     })
-        .catch(function (err) {
-            console.error("problem getting user", err);
-            // callback(true,err);
-        });
-}
+      .catch(function (err) {
+        console.error("problem getting user", err);
+        // callback(true,err);
+      });
+  }
 
 
   async register(id, price, callback) {
@@ -203,13 +345,17 @@ class Web3Provider extends React.Component {
   }
 
   //Buy level
-  async buyLevel(level, price, callback) {
+  buyLevel = (level, price, callback) => {
     // this.setState({ loading: true });
-    this.data.mlm.methods.buyLevel(level)
-    .send({ from: this.data.account, value: price })
+    this.state.mlm.methods.buyLevel(level)
+      .send({ from: this.state.user.walletAddress, value: price })
       .once('receipt', (receipt) => {
         // this.setState({ loading: false })
         callback(receipt)
+
+      }).catch(error => {
+        console.log("errrrrrror", error)
+
       })
   }
 
@@ -261,16 +407,16 @@ class Web3Provider extends React.Component {
 
 
 
-  makeErrorToast(error){
-    toast.error( error, { 
-      position:"bottom-center",
-      autoClose: 7000, 
-      hideProgressBar: true, 
+  makeErrorToast(error) {
+    toast.error(error, {
+      position: "bottom-center",
+      autoClose: 7000,
+      hideProgressBar: true,
       closeOnClick: false,
-      pauseOnHover: true, 
-      draggable: false 
-     });
-     
+      pauseOnHover: true,
+      draggable: false
+    });
+
   }
 
 
@@ -289,9 +435,13 @@ class Web3Provider extends React.Component {
 
 function mapStateToProps(store) {
   return {
-    
+
   };
 }
 
-export default Web3Provider;
+export default connect(mapStateToProps, null, null, { withRef: true })(Web3Provider);
 
+// export default compose(
+//   connect(mapStateToProps, null, null, { withRef: true }),
+//     Web3Provider
+// );

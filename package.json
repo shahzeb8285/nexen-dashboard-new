@@ -100,6 +100,7 @@
     "redux-thunk": "^2.3.0",
     "rickshaw": "1.7.1",
     "styled-components": "^5.1.1",
+    "sweetalert": "^2.1.2",
     "tabler-icons": "^1.10.0",
     "web3": "^1.2.11",
     "yarn": "^1.22.4"

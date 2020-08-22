@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import Hammer from 'rc-hammerjs';
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect, Route, Switch, withRouter } from 'react-router';
+import { Redirect, Route, Switch, withRouter,IndexRedirect } from 'react-router';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { Col, Container, Row } from 'reactstrap';
 import { closeSidebar, openSidebar } from '../../actions/navigation';
@@ -245,12 +245,14 @@ class Layout extends React.Component {
                   timeout={200}
                 >
                   <Switch>
-                    <Route path="/app/main" exact render={() => <Redirect to="/app/main/dashboard" />} />
-                    <Route path="/app/main/dashboard" exact component={Dashboard} />
+
+
+                    <Route path="/" exact render={() => <Redirect to="/dashboard" />} />
+                    <Route path="/dashboard" exact component={Dashboard} />
                     <Route path="/app/icons" exact component={UIIcons} />
                     <Route path="/app/notifications" exact component={UINotifications} />
                     <Route path="/app/charts" exact component={Charts} />
-                    <Route path="/app/tables" exact component={TablesStatic} />
+                    <Route path="/dashboard/tables" exact component={TablesStatic} />
                     <Route path="/app/maps" exact component={MapsGoogle} />
                     <Route path="/app/typography" exact component={CoreTypography} />
                   </Switch>

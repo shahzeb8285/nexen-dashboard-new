@@ -31,7 +31,7 @@ const Level = (props) => {
     data = props.levelData;
     icon = data.icon;
     isBought =data.isBought;
-    amount = data.amount;
+    amount = data.amountTag;
     position = data.position;
     isThisNextLevel = data.isThisNextLevel
   }
@@ -118,7 +118,7 @@ const Level = (props) => {
 
           }}>
 
-            <h5 className="">{amount} <span className="fw-bold">TRX</span></h5>
+            <h5 className="">{amount} <span className="fw-bold">ETH</span></h5>
 
           </Col>
 

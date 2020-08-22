@@ -13,13 +13,15 @@ import Web3Provider from "../../components/Blockchain/Web3Provider"
 import { connect } from 'react-redux';
 import { Redirect, Route, Switch, withRouter } from 'react-router';
 import Level from "./components/Level/Level";
+// import swal from 'sweetalert';
+import {toast} from 'react-toastify';
 
 class Dashboard extends React.Component {
 
 
   async componentDidMount() {
 
-    this.initLevels()
+    // this.initLevels()
 
   }
 
@@ -43,6 +45,8 @@ class Dashboard extends React.Component {
     this.Web3Ref = React.createRef();
 
   }
+
+
   checkTable(id) {
     let arr = [];
     if (id === 0) {
@@ -71,120 +75,10 @@ class Dashboard extends React.Component {
   }
 
 
-  initLevels() {
-    var levels = [];
-
-
-
-
-
-
-    levels.push({
-      position: 1,
-      amount: 500,
-      icon: require("../../images/levels/level2.png"),
-      isBought: false,
-      isThisNextLevel: true,
-      bgStartColor: "#621e94",
-      bgEndColor: "#240b36"
-    })
-
-    levels.push({
-      position: 2,
-      amount: 1000,
-      icon: require("../../images/levels/level2.png"),
-      isBought: false,
-      bgStartColor: "#0984e3",
-      bgEndColor: "#06508a"
-
-    })
-
-
-    levels.push({
-      position: 3,
-      amount: 1500,
-      icon: require("../../images/levels/level2.png"),
-      isBought: false,
-      bgStartColor: "#fdcb6e",
-      bgEndColor: "#bf8415"
-    })
-
-
-    levels.push({
-      position: 4,
-      amount: 2000,
-      icon: require("../../images/levels/level2.png"),
-      isBought: false,
-      bgStartColor: "#787777",
-      bgEndColor: "#a8a8a8"
-
-    })
-
-
-    levels.push({
-      position: 5,
-      amount: 2500,
-      icon: require("../../images/levels/level2.png"),
-      isBought: false,
-      bgStartColor: "#961516",
-      bgEndColor: "#d63031"
-    })
-
-
-    levels.push({
-      position: 6,
-      amount: 3000,
-      icon: require("../../images/levels/level2.png"),
-      isBought: false,
-      bgStartColor: "#0984e3",
-      bgEndColor: "#06508a"
-    })
-
-
-    levels.push({
-      position: 7,
-      amount: 3500,
-      icon: require("../../images/levels/level2.png"),
-      isBought: false,
-      bgStartColor: "#621e94",
-      bgEndColor: "#240b36"
-    })
-
-
-    levels.push({
-      position: 8,
-      amount: 4000,
-      icon: require("../../images/levels/level2.png"),
-      isBought: false,
-      bgStartColor: "#fdcb6e",
-      bgEndColor: "#bf8415"
-    })
-
-
-    levels.push({
-      position: 9,
-      amount: 4500,
-      icon: require("../../images/levels/level2.png"),
-      isBought: false,
-      bgStartColor: "#787777",
-      bgEndColor: "#a8a8a8"
-
-    })
-
-
-    levels.push({
-      position: 10,
-      amount: 5000,
-      icon: require("../../images/levels/level2.png"),
-      isBought: false,
-      bgStartColor: "#961516",
-      bgEndColor: "#d63031"
-    })
-
-
-
-    this.setState({ levels })
+  componentWillReceiveProps(props){
+    console.log("Ggggggg",props)
   }
+
 
   getChartData() {
 
@@ -730,16 +624,29 @@ class Dashboard extends React.Component {
 
   onLevelClicked = (level) => {
     console.log("LevelNumber", level);
+    if(level.isBought){
+      toast.success("You have already bought this level!");
 
-    this.setState({ visileBuyModal: true, selectedLevel: level })
+    }else if(level.isThisNextLevel){
+      this.setState({ visileBuyModal: true, selectedLevel: level })
+
+    }else{
+      toast.error("Please Buy previous level first!");
+
+    }
 
 
   }
 
 
   buyLevel=(level)=>{
-      console.log("fdfdfdfd",this.Web3Ref.current)
-      this.Web3Ref.current.buyLevel1("dataaa")
+      console.log("fdfdfdfd",level)
+    this.Web3Ref.current.getWrappedInstance().buyLevel(level.position,level.amount,(receipt=>{
+      console.log("=====================")
+      console.log(receipt)
+      console.log("=====================")
+
+    }))
     
   }
 
@@ -805,7 +712,7 @@ class Dashboard extends React.Component {
           <Button color="primary" onClick={()=>{
             this.buyLevel(this.state.selectedLevel)
           }} >Pay
-            {this.state.selectedLevel ? " " + this.state.selectedLevel.amount + " TRX" : ""}</Button>{' '}
+            {this.state.selectedLevel ? " " + this.state.selectedLevel.amountTag + " ETH" : ""}</Button>{' '}
 
 
           <Button color="danger" onClick={() => {
@@ -821,7 +728,10 @@ class Dashboard extends React.Component {
     return (
       <>
 
-        <Web3Provider  ref={this.Web3Ref }/>
+        <Web3Provider  
+        ref={this.Web3Ref } 
+        
+        />
 
 
         <div className={s.root}>
@@ -1004,7 +914,7 @@ class Dashboard extends React.Component {
               <Level
 
 
-                levelData={this.state.levels.length != 0 ? this.state.levels[0] : null}
+                levelData={this.props.user.levels? this.props.user.levels[0] : null}
                 onLevelClicked={this.onLevelClicked}
               />
 
@@ -1013,7 +923,7 @@ class Dashboard extends React.Component {
 
                 onLevelClicked={this.onLevelClicked}
 
-                levelData={this.state.levels.length != 0 ? this.state.levels[1] : null}
+                levelData={this.props.user.levels? this.props.user.levels[1] : null}
 
               />
 
@@ -1022,7 +932,7 @@ class Dashboard extends React.Component {
 
                 onLevelClicked={this.onLevelClicked}
 
-                levelData={this.state.levels.length != 0 ? this.state.levels[2] : null}
+                levelData={this.props.user.levels? this.props.user.levels[2] : null}
 
               />
 
@@ -1030,8 +940,8 @@ class Dashboard extends React.Component {
               <Level
 
 
-                levelData={this.state.levels.length != 0 ? this.state.levels[3] : null}
-                onLevelClicked={this.onLevelClicked}
+levelData={this.props.user.levels? this.props.user.levels[3] : null}
+onLevelClicked={this.onLevelClicked}
 
 
               />
@@ -1039,8 +949,8 @@ class Dashboard extends React.Component {
               <Level
 
 
-                levelData={this.state.levels.length != 0 ? this.state.levels[4] : null}
-                onLevelClicked={this.onLevelClicked}
+levelData={this.props.user.levels? this.props.user.levels[4] : null}
+onLevelClicked={this.onLevelClicked}
 
               />
             </Row>
@@ -1053,12 +963,12 @@ class Dashboard extends React.Component {
 
                 onLevelClicked={this.onLevelClicked}
 
-                levelData={this.state.levels.length != 0 ? this.state.levels[5] : null}
+                levelData={this.props.user.levels? this.props.user.levels[5] : null}
               />
 
               <Level
 
-                levelData={this.state.levels.length != 0 ? this.state.levels[6] : null}
+levelData={this.props.user.levels? this.props.user.levels[6] : null}
 
                 onLevelClicked={this.onLevelClicked}
 
@@ -1067,7 +977,7 @@ class Dashboard extends React.Component {
 
               <Level
 
-                levelData={this.state.levels.length != 0 ? this.state.levels[7] : null}
+levelData={this.props.user.levels? this.props.user.levels[7] : null}
 
                 onLevelClicked={this.onLevelClicked}
 
@@ -1077,7 +987,7 @@ class Dashboard extends React.Component {
 
               <Level
 
-                levelData={this.state.levels.length != 0 ? this.state.levels[8] : null}
+levelData={this.props.user.levels? this.props.user.levels[8] : null}
 
                 onLevelClicked={this.onLevelClicked}
 
@@ -1085,7 +995,7 @@ class Dashboard extends React.Component {
 
               <Level
 
-                levelData={this.state.levels.length != 0 ? this.state.levels[9] : null}
+levelData={this.props.user.levels? this.props.user.levels[9] : null}
 
                 onLevelClicked={this.onLevelClicked}
 

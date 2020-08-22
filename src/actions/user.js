@@ -3,9 +3,10 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 
-export function receiveLogin() {
+export function receiveLogin(data) {
     return {
-        type: LOGIN_SUCCESS
+        type: LOGIN_SUCCESS,
+        data
     };
 }
 
@@ -40,12 +41,15 @@ export function logoutUser() {
 export function loginUser(creds) {
     return (dispatch) => {
 
-        dispatch(receiveLogin());
+        dispatch(receiveLogin({userId:creds.userId}));
+        localStorage.setItem('userId', creds.userId)
 
-        if (creds.email.length > 0 && creds.password.length > 0) {
-            localStorage.setItem('authenticated', true)
-        } else {
-            dispatch(loginError('Something was wrong. Try again'));
-        }
+        // if (creds.email.length > 0 && creds.password.length > 0) {
+        //     // localStorage.setItem('authenticated', true)
+        //     localStorage.setItem('userId', cred.userId)
+
+        // } else {
+        //     dispatch(loginError('Something was wrong. Try again'));
+        // }
     }
 }

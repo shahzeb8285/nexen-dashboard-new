@@ -1,7 +1,7 @@
-import { INCOME_FETCHED,USER_FETCHED } from '../actions/web3Actions';
+import { INCOME_FETCHED,USER_FETCHED,LEVEL_UPDATED } from '../actions/web3Actions';
 
 export default function Web3Reducer(state = {
-    user: {name:""},
+    user: {name:"",},
 }, action) {
     switch (action.type) {
         case INCOME_FETCHED:
@@ -13,11 +13,11 @@ export default function Web3Reducer(state = {
             return {
                 user:action.user,
             }
-        // case REGISTER_FAILURE:
-        //     return Object.assign({}, state, {
-        //         isFetching: false,
-        //         errorMessage: action.payload,
-        //     });
+            case LEVEL_UPDATED:
+                console.log("levelssss",action.levels)            
+                return {
+                    levels:action.levels
+                }
         default:
             return state; 
     }

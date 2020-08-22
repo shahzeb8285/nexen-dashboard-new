@@ -136,7 +136,7 @@ class Sidebar extends React.Component {
                         header="Dashboard"
                         isHeader
                         iconName="flaticon-home"
-                        link="/app/main"
+                        link="/"
                         index="main"
                     />
                     {/* <h5 className={[s.navTitle, s.groupTitle].join(' ')}>TEMPLATE</h5> */}
@@ -147,7 +147,7 @@ class Sidebar extends React.Component {
                         header="Profile"
                         isHeader
                         iconName="flaticon-user"
-                        link="/app/profile"
+                        link="/dashboard/profile"
                         index="core"
                     />
                     <LinksGroup
@@ -156,7 +156,7 @@ class Sidebar extends React.Component {
                         header="Logout"
                         isHeader
                         iconName="flaticon-exit"
-                        link="/app/tables"
+                        link="/dashboard/tables"
                         index="tables"
                     />
 
