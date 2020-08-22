@@ -13,6 +13,7 @@ import Web3Provider from "../../components/Blockchain/Web3Provider"
 import { connect } from 'react-redux';
 import { Redirect, Route, Switch, withRouter } from 'react-router';
 import Level from "./components/Level/Level";
+import UserTree from '../../components/Tree/UserTree'
 
 class Dashboard extends React.Component {
 
@@ -1096,9 +1097,10 @@ class Dashboard extends React.Component {
           </Widget>
 
 
+           <UserTree></UserTree>
 
           <Row>
-            <Col >
+            <Col>
               <Widget
                 title={""}
               >
