@@ -198,31 +198,31 @@ class Layout extends React.Component {
                 
                 <Row>
 
-                  <h5>All Participants</h5>
-                  <h5>123455</h5>
+                  <h5 style={{color:"yellow", fontWeight:"600" }}>All Participants</h5>
+                  <h5 style={{color:"#72dd97",fontSize:"x-large" }}>123455</h5>
                 </Row>
 
 
                 <Row>
 
-                  <h5>Joined in 24 Hours</h5>
-                  <h5>123455</h5>
+                  <h5 style={{color:"white", fontWeight:"600" }}>Joined in 24 Hours</h5>
+                  <h5 style={{color:"#ff1616",fontSize:"x-large" }}>123455</h5>
                 </Row>
                 
                 
                 
                 <Row>
 
-                  <h5>Participants have earned ETH</h5>
-                  <h5>123455</h5>
+                  <h5 style={{color:"yellow", fontWeight:"600" }}>Participants have earned ETH</h5>
+                  <h5 style={{color:"#b2ecef",fontSize:"x-large" }}>123455</h5>
                 </Row>
 
 
 
                 <Row>
 
-                  <h5>Participants have earned USD</h5>
-                  <h5>123455</h5>
+                  <h5 style={{color:"#10f171", fontWeight:"600" }}>Participants have earned USD</h5>
+                  <h5 style={{color:"#f6c362",fontSize:"x-large" }}>123455</h5>
                 </Row>
 </Col>
               </Widget>
