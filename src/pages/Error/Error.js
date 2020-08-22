@@ -37,7 +37,7 @@ export default class NotFound extends Component {
               <BrowserView>
                 <h3> This is rendered only in browser </h3>
                 <Row>
-                    <Col lg={12}>
+                    <Col lg="12">
                           <div className="browser">
                              <img src={meta3}></img>
                           </div>
