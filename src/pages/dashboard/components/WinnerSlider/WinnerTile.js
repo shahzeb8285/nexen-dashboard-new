@@ -38,7 +38,6 @@ const WinnerTile = (props) => {
           position: "relative",
           paddingTop: "20px",
           display: "inline-block",
-
         }}>
 
 

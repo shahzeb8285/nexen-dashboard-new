@@ -81,8 +81,8 @@ const Level = (props) => {
 
           >
           <Col style={{
-            background: "radial-gradient(farthest-side ellipse at 10% 0, " + startClr
-              + " 20%, " + endClr + ")",
+            // background: "radial-gradient(farthest-side ellipse at 10% 0, " + startClr
+            //   + " 20%, " + endClr + ")",
 
             filter: isBought?null:" blur(2px)",
             WebkitFilter: isBought?null:"blur(2px)",
@@ -100,10 +100,10 @@ const Level = (props) => {
           
           >
             <img src={icon} style={{
-              // height: "200px",
+              height: "100px",
               width: "100px",
               // borderRadius: "50%",
-              objectFit: "cover",
+              // objectFit: "cover",
             }} alt="" />
 
 

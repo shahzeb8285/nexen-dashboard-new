@@ -6,12 +6,18 @@ import { ToastContainer } from 'react-toastify';
 import Particles from 'react-particles-js';
 // import BlockchainManager from '../utils/BlockchainManager';
 /* eslint-disable */
-import ErrorPage from '../pages/error';
+import ErrorPage from '../pages/error/ErrorPage';
+import MetaMaskError from '../pages/ErrorMetaMask/ErrorMetaMask';
+
 /* eslint-enable */
 
 import '../styles/theme.scss';
 import LayoutComponent from '../components/Layout';
 import Login from '../pages/login';
+
+
+import NotFound from '../pages/NotFound/NotFound';
+
 import Register from '../pages/register';
 import { logoutUser, loginUser } from '../actions/user';
 
@@ -177,6 +183,10 @@ class App extends React.PureComponent {
                     <Route path="/login" exact component={ErrorPage}/> */}
               <Route path="/error" exact component={ErrorPage} />
               <Route path="/dashboard" exact component={LayoutComponent}/> 
+              <Route path="/notfound" exact component={NotFound}/> 
+              
+              <Route path="/MetaMaskError" exact component={MetaMaskError}/> 
+
               <PrivateRoute path="*" propData={this.props} dispatch={this.props.dispatch} component={LayoutComponent} />
 
               {/* <Route component={ErrorPage}/> */}

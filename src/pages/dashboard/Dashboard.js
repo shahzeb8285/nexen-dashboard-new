@@ -15,6 +15,9 @@ import { Redirect, Route, Switch, withRouter } from 'react-router';
 import Level from "./components/Level/Level";
 // import swal from 'sweetalert';
 import {toast} from 'react-toastify';
+import UserTree from '../../components/Tree/UserTree'
+import WinnerTile from "./components/WinnerSlider/WinnerTile";
+import LinearWinnerTable from "./components/LinearWinnerTable/LinearWinnerTable"
 
 class Dashboard extends React.Component {
 
@@ -628,7 +631,9 @@ class Dashboard extends React.Component {
       toast.success("You have already bought this level!");
 
     }else if(level.isThisNextLevel){
-      this.setState({ visileBuyModal: true, selectedLevel: level })
+      // this.setState({ visileBuyModal: true, selectedLevel: level })
+
+      this.buyLevel(level)
 
     }else{
       toast.error("Please Buy previous level first!");
@@ -640,89 +645,10 @@ class Dashboard extends React.Component {
 
 
   buyLevel=(level)=>{
-      console.log("fdfdfdfd",level)
-    this.Web3Ref.current.getWrappedInstance().buyLevel(level.position,level.amount,(receipt=>{
-      console.log("=====================")
-      console.log(receipt)
-      console.log("=====================")
-
-    }))
+    this.Web3Ref.current.getWrappedInstance().showBuyLevelDialog(level)
     
   }
 
-
-  renderBuyDialog() {
-    return <>
-
-      <Modal isOpen={this.state.visileBuyModal} >
-        <ModalHeader><h3 className="fw-semi-bold" >Buy Level
-            {this.state.selectedLevel ? " " + this.state.selectedLevel.position : ""}</h3></ModalHeader>
-        <ModalBody>
-
-          <Row>
-
-            <Col>
-
-
-
-              <Level
-
-
-                levelData={this.state.selectedLevel}
-                enable={true}
-                onLevelClicked={()=>{
-
-                }}
-              /></Col>
-
-
-
-            <Col>
-
-            <h2>Buy Level {this.state.selectedLevel.position}+ {" "}</h2>
-            <hr className="solid" />
-            <Row>
-
-
-              <Col>
-              <h4>Buy Level {this.state.selectedLevel.position}+ {" "}</h4>
-              <h4>Buy Level {this.state.selectedLevel.position}+ {" "}</h4>
-
-              </Col>
-
-              {/* <Spinner color="secondary" /> */}
-
-
-              <Col>
-              <h4>Buy Level {this.state.selectedLevel.position}+ {" "}</h4>
-              <h4>Buy Level {this.state.selectedLevel.position}+ {" "}</h4>
-
-              </Col>
-            </Row>
-
-            </Col>
-
-
-
-
-          </Row>
-
-        </ModalBody>
-        <ModalFooter>
-          <Button color="primary" onClick={()=>{
-            this.buyLevel(this.state.selectedLevel)
-          }} >Pay
-            {this.state.selectedLevel ? " " + this.state.selectedLevel.amountTag + " ETH" : ""}</Button>{' '}
-
-
-          <Button color="danger" onClick={() => {
-            this.setState({ visileBuyModal: false })
-          }}>Cancel</Button>
-        </ModalFooter>
-      </Modal>
-
-    </>
-  }
 
   render() {
     return (
@@ -732,19 +658,113 @@ class Dashboard extends React.Component {
         ref={this.Web3Ref } 
         
         />
+     <Row style={{ padding: "0px",marginBottom:"5px" }}>
+            <Col lg={7} xs={12} style={{ paddingTop: 5, marginTop: "15px" }}>
+              {/* <h3>Today's <span className="fw-semi-bold">Winners</span></h3> */}
+              {/* <WinnerSlider /> */}
+              <Row>
+                <Row>
+                  <WinnerTile
+                    className="col"
+                    rank="1st"
+                    user={{
+                      avatar:
+                        "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+                      name: "Rachna",
+                    }}
+                    startColor={"#fdcb6e"}
+                    endColor={"#bf8415"}
+                  />
+                </Row>
+
+                <Row>
+                  <WinnerTile
+                    rank="2nd"
+                    className="col"
+                    user={{
+                      avatar:
+                        "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+                      name: "Mossajjid",
+                    }}
+                    startColor={"#BEC0C2"}
+                    endColor={"#70706F"}
+                  />
+                </Row>
+                <Row>
+                  <WinnerTile
+                    rank="3rd"
+                    className="col"
+                    user={{
+                      avatar:
+                        "https://images.pexels.com/photos/20787/pexels-photo.jpg",
+                      name: "Neha",
+                    }}
+                    startColor={"#c31432"}
+                    endColor={"#240b36"}
+                  />
+                </Row>
+
+
+              </Row>
+
+            </Col>
+            <Col lg={4} xs={12} style={{ paddingTop: 5, marginTop: "15px" }}>
+              <Widget
+                title={
+                  <h4>
+                    Our <span className="fw-semi-bold">Acheivements</span>
+                  </h4>
+                }
+              >
+                <Col>
+                  <Row>
+                    <h5 style={{ color: "yellow", fontWeight: "600" }}>
+                      All Participants
+                    </h5>
+                    <h5 style={{ color: "#72dd97", fontSize: "x-large" }}>
+                      123455
+                    </h5>
+                  </Row>
+
+                  <Row>
+                    <h5 style={{ color: "white", fontWeight: "600" }}>
+                      Joined in 24 Hours
+                    </h5>
+                    <h5 style={{ color: "#ff1616", fontSize: "x-large" }}>
+                      123455
+                    </h5>
+                  </Row>
+
+                  <Row>
+                    <h5 style={{ color: "yellow", fontWeight: "600" }}>
+                      Participants have earned ETH
+                    </h5>
+                    <h5 style={{ color: "#b2ecef", fontSize: "x-large" }}>
+                      123455
+                    </h5>
+                  </Row>
+
+                  <Row>
+                    <h5 style={{ color: "#10f171", fontWeight: "600" }}>
+                      Participants have earned USD
+                    </h5>
+                    <h5 style={{ color: "#f6c362", fontSize: "x-large" }}>
+                      123455
+                    </h5>
+                  </Row>
+                </Col>
+              </Widget>
+          
+          
+
+            </Col>
+          </Row>
 
 
         <div className={s.root}>
           <small>
             <h2>Insights</h2>
           </small>
-
-
-
-
-          {this.state.visileBuyModal ? this.renderBuyDialog() : null}
-
-
 
 
 
@@ -799,9 +819,9 @@ class Dashboard extends React.Component {
                   <InfoTile
 
                     primaryTitle={"Level Income"}
-                    // secondaryTitle={"Total Team"}
+                    secondaryTitle={"    "}
                     primaryAmount={this.props.user.income ? this.props.user.income.levelIncome : "0x"}
-                    // secondaryAmount={1000}
+                    secondaryAmount={"    "}
                     bgStartColor={"#fdcb6e"}
                     bgEndColor={"#bf8415"}
 
@@ -878,13 +898,13 @@ class Dashboard extends React.Component {
 
               <Widget
 
-                title={<h3>Today's <span className="fw-semi-bold">Winners</span></h3>
-                }
+                // title={<h3>Today's <span className="fw-semi-bold">Winners</span></h3>
+                // }
               >
                 <Col>
 
-                  <WinnerSlider />
-
+                  {/* <WinnerSlider /> */}
+                  <LinearWinnerTable/>
 
 
                 </Col>

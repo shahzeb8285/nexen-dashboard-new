@@ -141,7 +141,7 @@ class Static extends React.Component {
   render() {
     return (
       <div className={s.root}>
-        <h2 className="page-title">Tables - <span className="fw-semi-bold">Static</span></h2>
+        <h2 className="page-title">Winner - <span className="fw-semi-bold">Date</span></h2>
         <Row>
           <Col>
             <Widget
@@ -153,12 +153,12 @@ class Static extends React.Component {
               <Table striped>
                 <thead>
                   <tr className="fs-sm">
-                    <th className="hidden-sm-down">#</th>
+                    <th className="hidden-sm-down">Id</th>
                     <th>Picture</th>
-                    <th>Description</th>
-                    <th className="hidden-sm-down">Info</th>
+                    <th>Wallet Id</th>
+                    <th className="hidden-sm-down">Rank</th>
                     <th className="hidden-sm-down">Date</th>
-                    <th className="hidden-sm-down">Size</th>
+                    <th className="hidden-sm-down">Total referal</th>
                     <th className="hidden-sm-down">Status</th>
                   </tr>
                 </thead>

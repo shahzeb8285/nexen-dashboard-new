@@ -2,13 +2,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-
+import { Badge, Col, Row, Table, Button, Modal,Spinner,
+  ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import MLM from "../../contracts/MLM.json";
 import Web3 from "web3";
 import { incomeFetched, userFetched, onLevelUpdated } from "../../actions/web3Actions";
 import { toast } from 'react-toastify';
 import { compose } from 'redux';
-
+import  Level from '../../pages/dashboard/components/Level/Level'
 
 class Web3Provider extends React.Component {
 
@@ -22,7 +23,17 @@ class Web3Provider extends React.Component {
     this.state = {
       user: {},
       income: {},
-      mlm: null
+      mlm: null,
+      selectedLevel:{
+        position: 1,
+        amount: 50000000000000000,
+        icon: require("../../images/levels/l1.png"),
+        isBought:  1,
+        amountTag: "0.05",
+  
+        bgStartColor: "#621e94",
+        bgEndColor: "#240b36"
+      }
     };
   }
 
@@ -41,6 +52,15 @@ class Web3Provider extends React.Component {
 
   }
 
+
+
+
+  showBuyLevelDialog(level){
+    this.setState({visibleBuyModal:true})
+   
+
+
+  }
 
 
   async loadWeb3() {
@@ -90,6 +110,7 @@ class Web3Provider extends React.Component {
         //   "MLM contract not deployed to detected network."
         // );
 
+        this.setState({InitError:true})
         this.makeErrorToast("MLM contract not deployed to detected network.")
       }
     }
@@ -232,6 +253,9 @@ class Web3Provider extends React.Component {
 
     var level = levels[levelNumber]
     level.isThisNextLevel = true
+
+
+    // this.setState({selectedLevel:level})
     return levels
 
   }
@@ -356,6 +380,7 @@ class Web3Provider extends React.Component {
       }).catch(error => {
         console.log("errrrrrror", error)
 
+        this.makeErrorToast("Error Buying Level!")
       })
   }
 
@@ -421,6 +446,94 @@ class Web3Provider extends React.Component {
 
 
 
+  renderBuyDialog() {
+    return <>
+
+      <Modal isOpen={this.state.visibleBuyModal} >
+        <ModalHeader><h3 className="fw-semi-bold" >Buy Level
+            {this.state.selectedLevel ? " " + this.state.selectedLevel.position : ""}</h3></ModalHeader>
+        <ModalBody>
+
+          <Row>
+
+            <Col>
+
+
+
+              <Level
+
+
+                levelData={this.state.selectedLevel}
+                enable={true}
+                onLevelClicked={()=>{
+
+                }}
+              /></Col>
+
+
+
+            <Col>
+
+            <h2>Buy Level {this.state.selectedLevel.position}+ {" "}</h2>
+            <hr className="solid" />
+            <Row>
+
+
+              <Col>
+              <h4>Buy Level {this.state.selectedLevel.position}+ {" "}</h4>
+              <h4>Buy Level {this.state.selectedLevel.position}+ {" "}</h4>
+
+              </Col>
+
+              {/* <Spinner color="secondary" /> */}
+
+
+              <Col>
+              <h4>Buy Level {this.state.selectedLevel.position}+ {" "}</h4>
+              <h4>Buy Level {this.state.selectedLevel.position}+ {" "}</h4>
+
+              </Col>
+            </Row>
+
+            </Col>
+
+
+
+
+          </Row>
+
+        </ModalBody>
+        <ModalFooter>
+          <Button color="primary" onClick={()=>{
+             this.buyLevel(this.state.selectedLevel.position,this.state.selectedLevel.amount,(receipt=>{
+                console.log("gffgfgg",receipt)
+                toast.success("Successfully bought level "+this.state.selectedLevel.position, {
+                  position: "bottom-center",
+                  autoClose: 7000,
+                  hideProgressBar: true,
+                  closeOnClick: false,
+                  pauseOnHover: true,
+                  draggable: false
+                });
+
+                this.setState({ visibleBuyModal: false })
+                window.location.reload();
+
+            }))
+          }} >Pay
+            {this.state.selectedLevel ? " " + this.state.selectedLevel.amountTag + " ETH" : ""}</Button>{' '}
+
+
+          <Button color="danger" onClick={() => {
+            this.setState({ visibleBuyModal: false })
+          }}>Cancel</Button>
+        </ModalFooter>
+      </Modal>
+
+    </>
+  }
+
+
 
 
   render() {
@@ -428,6 +541,7 @@ class Web3Provider extends React.Component {
 
       <>
 
+          {this.state.visibleBuyModal ? this.renderBuyDialog() : null}
       </>
     );
   }

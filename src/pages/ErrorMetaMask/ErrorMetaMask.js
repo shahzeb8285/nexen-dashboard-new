@@ -13,7 +13,7 @@ import logo from "../../images/logo.png";
 import meta3 from '../../images/metamask.png'
 import meta2 from '../../images/meta2.png'
 import meta4 from '../../images/meta4.jpeg'
-import "./Error.scss";
+import "./ErrorMetaMask.scss";
 import {
   BrowserView,
   MobileView,
@@ -21,7 +21,7 @@ import {
   isMobile,
 } from "react-device-detect";
 
-export default class NotFound extends Component {
+export default class ErrorMetaMask extends Component {
   render() {
     return (
       <Container className="mt--7" fluid>

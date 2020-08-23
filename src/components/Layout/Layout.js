@@ -1,29 +1,3 @@
-<<<<<<< HEAD
-import PropTypes from 'prop-types';
-import Hammer from 'rc-hammerjs';
-import React from 'react';
-import { connect } from 'react-redux';
-import { Redirect, Route, Switch, withRouter,IndexRedirect } from 'react-router';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { Col, Container, Row } from 'reactstrap';
-import { closeSidebar, openSidebar } from '../../actions/navigation';
-import { incomeFetched, userFetched } from '../../actions/web3Actions';
-import WinnerSlider from '../../pages/dashboard/components/WinnerSlider/WinnerSlider';
-
-import Widget from '../../components/Widget';
-import Charts from '../../pages/components/charts/Charts';
-import UIIcons from '../../pages/components/icons';
-import MapsGoogle from '../../pages/components/maps/google';
-import Dashboard from '../../pages/dashboard';
-import UINotifications from '../../pages/notifications';
-import TablesStatic from '../../pages/tables/static';
-import CoreTypography from '../../pages/typography';
-import Header from '../Header';
-import Sidebar from '../Sidebar';
-import s from './Layout.module.scss';
-import { toast } from 'react-toastify';
-import WinnerTile from '../../pages/dashboard/components/WinnerSlider/WinnerTile'
-=======
 import PropTypes from "prop-types";
 import Hammer from "rc-hammerjs";
 import React from "react";
@@ -34,6 +8,8 @@ import { Col, Container, Row } from "reactstrap";
 import { closeSidebar, openSidebar } from "../../actions/navigation";
 import { incomeFetched, userFetched } from "../../actions/web3Actions";
 import WinnerSlider from "../../pages/dashboard/components/WinnerSlider/WinnerSlider";
+import ProfilePage from "../../pages/Profile/Profile";
+
 import {
   Badge,
   Table,
@@ -57,7 +33,6 @@ import Sidebar from "../Sidebar";
 import s from "./Layout.module.scss";
 import { toast } from "react-toastify";
 import WinnerTile from "../../pages/dashboard/components/WinnerSlider/WinnerTile";
->>>>>>> origin/mosajjid
 // import BlockchainManager from '../../utils/BlockchainManager';
 
 class Layout extends React.Component {
@@ -160,111 +135,7 @@ class Layout extends React.Component {
 
           <Sidebar />
 
-          <Row>
-            <Col lg={7} xs={12} style={{ paddingTop: 5, marginTop: "15px" }}>
-              {/* <h3>Today's <span className="fw-semi-bold">Winners</span></h3> */}
-              {/* <WinnerSlider /> */}
-              <Widget
-                title={
-                  <h4>
-                    Today's <span className="fw-semi-bold">Winners</span>
-                  </h4>
-                }
-              >
-                <div className="row">
-                  <Row>
-                    <WinnerTile
-                      className="col"
-                      rank="1st"
-                      user={{
-                        avatar:
-                          "https://images.pexels.com/photos/20787/pexels-photo.jpg",
-                        name: "Rachna",
-                      }}
-                      startColor={"#fdcb6e"}
-                      endColor={"#bf8415"}
-                    />
-                  </Row>
-
-                  <Row>
-                    <WinnerTile
-                      rank="2nd"
-                      className="col"
-                      user={{
-                        avatar:
-                          "https://images.pexels.com/photos/20787/pexels-photo.jpg",
-                        name: "Mossajjid",
-                      }}
-                      startColor={"#BEC0C2"}
-                      endColor={"#70706F"}
-                    />
-                  </Row>
-                  <Row>
-                    <WinnerTile
-                      rank="3rd"
-                      className="col"
-                      user={{
-                        avatar:
-                          "https://images.pexels.com/photos/20787/pexels-photo.jpg",
-                        name: "Neha",
-                      }}
-                      startColor={"#c31432"}
-                      endColor={"#240b36"}
-                    />
-                  </Row>
-                </div>
-              </Widget>
-            </Col>
-
-            <Col lg={4} xs={12} style={{ paddingTop: 5, marginTop: "15px" }}>
-              <Widget
-                title={
-                  <h4>
-                    Our <span className="fw-semi-bold">Acheivements</span>
-                  </h4>
-                }
-              >
-                <Col>
-                  <Row>
-                    <h5 style={{ color: "yellow", fontWeight: "600" }}>
-                      All Participants
-                    </h5>
-                    <h5 style={{ color: "#72dd97", fontSize: "x-large" }}>
-                      123455
-                    </h5>
-                  </Row>
-
-                  <Row>
-                    <h5 style={{ color: "white", fontWeight: "600" }}>
-                      Joined in 24 Hours
-                    </h5>
-                    <h5 style={{ color: "#ff1616", fontSize: "x-large" }}>
-                      123455
-                    </h5>
-                  </Row>
-
-                  <Row>
-                    <h5 style={{ color: "yellow", fontWeight: "600" }}>
-                      Participants have earned ETH
-                    </h5>
-                    <h5 style={{ color: "#b2ecef", fontSize: "x-large" }}>
-                      123455
-                    </h5>
-                  </Row>
-
-                  <Row>
-                    <h5 style={{ color: "#10f171", fontWeight: "600" }}>
-                      Participants have earned USD
-                    </h5>
-                    <h5 style={{ color: "#f6c362", fontSize: "x-large" }}>
-                      123455
-                    </h5>
-                  </Row>
-                </Col>
-              </Widget>
-            </Col>
-          </Row>
-
+     
           <Hammer onSwipe={this.handleSwipe}>
             <main className={s.content}>
               {/* <BreadcrumbHistory url={this.props.location.pathname} /> */}
@@ -276,29 +147,19 @@ class Layout extends React.Component {
                   timeout={200}
                 >
                   <Switch>
-<<<<<<< HEAD
 
 
                     <Route path="/" exact render={() => <Redirect to="/dashboard" />} />
                     <Route path="/dashboard" exact component={Dashboard} />
-=======
-                    <Route
-                      path="/app/main"
-                      exact
-                      render={() => <Redirect to="/app/main/dashboard" />}
-                    />
-                    <Route
-                      path="/app/main/dashboard"
-                      exact
-                      component={Dashboard}
-                    />
->>>>>>> origin/mosajjid
                     <Route path="/app/icons" exact component={UIIcons} />
                     <Route
                       path="/app/notifications"
                       exact
                       component={UINotifications}
                     />
+
+                    <Route path="/dashboard/profile" exact component={ProfilePage} />
+
                     <Route path="/app/charts" exact component={Charts} />
                     <Route path="/dashboard/tables" exact component={TablesStatic} />
                     <Route path="/app/maps" exact component={MapsGoogle} />
