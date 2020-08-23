@@ -13,7 +13,6 @@ import { connect } from 'react-redux';
 import { Redirect, Route, Switch, withRouter } from 'react-router';
 import Level from "./components/Level/Level";
 import swal from 'sweetalert';
-
 class Dashboard extends React.Component {
 
 
@@ -31,6 +30,7 @@ class Dashboard extends React.Component {
       rewardIncome: 0
     };
     this.checkTable = this.checkTable.bind(this);
+    this.buyLevel = this.buyLevel.bind(this);
   }
   checkTable(id) {
     let arr = [];
@@ -602,7 +602,9 @@ class Dashboard extends React.Component {
     return chartData
   }
 
-
+  buyLevel(){
+    console.log("buy me");
+  }
   onLevelClicked(levelNumber){
     swal({
       title: `Do You want to Buy level ${levelNumber}?`,
@@ -611,14 +613,16 @@ class Dashboard extends React.Component {
       dangerMode: false,
     })
     .then((willBuy) => {
-      if (willBuy) {
+      if (willBuy){
         swal("Congratulations", {
           icon: "success",
+
         });
       } else {
         swal("Oops, You have rejected to buy level");
       }
     });
+
 
   }
 
