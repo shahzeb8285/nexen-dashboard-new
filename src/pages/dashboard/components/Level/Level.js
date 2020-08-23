@@ -99,9 +99,9 @@ const Level = (props) => {
           }}
           
           >
-            <img src={icon} style={{
-              height: "100px",
-              width: "100px",
+            <img src={icon} className="img-responsive" style={{
+              // height: 100,
+              // width: 100,
               // borderRadius: "50%",
               // objectFit: "cover",
             }} alt="" />

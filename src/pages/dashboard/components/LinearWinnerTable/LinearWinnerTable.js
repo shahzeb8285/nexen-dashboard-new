@@ -26,8 +26,8 @@ const LinearWinnerTable = (props) => {
             <h5 className='fw-semi-bold'>Shahzeb Ahmed Khan</h5>
             <h6 className='fw-semi-bold'>ID : 235</h6>
 
-            <div class="progress progress-striped">
-              <div class="progress-bar">
+            <div className="progress progress-striped">
+              <div className="progress-bar">
               </div>
             </div>
 

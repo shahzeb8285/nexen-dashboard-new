@@ -48,8 +48,16 @@ const PrivateRoute = ({ propData, dispatch, component, ...rest }) => {
 
 
 
+  if(validateRoute(rest.location.pathname) && 
+  localStorage.getItem('userId') != rest.location.pathname.replace(/\D/g, "")){
+    propData.dispatch(loginUser({ userId: rest.location.pathname.replace(/\D/g, "") }));
+        console.log("resssst",rest)
+      // return (<Route {...rest} render={props => (React.createElement(component, props))} />)
+      return (<Redirect to="/dashboard" />)
+  }
 
   if (localStorage.getItem('userId')) {
+    propData.dispatch(loginUser({ userId: localStorage.getItem('userId') }));
 
     return ( // eslint-disable-line
 
@@ -182,7 +190,7 @@ class App extends React.PureComponent {
               {/* <Route path="/register" exact component={Register}/>
                     <Route path="/login" exact component={ErrorPage}/> */}
               <Route path="/error" exact component={ErrorPage} />
-              <Route path="/dashboard" exact component={LayoutComponent}/> 
+              {/* <Route path="/dashboard" exact component={LayoutComponent}/>  */}
               <Route path="/notfound" exact component={NotFound}/> 
               
               <Route path="/MetaMaskError" exact component={MetaMaskError}/> 

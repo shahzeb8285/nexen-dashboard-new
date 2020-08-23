@@ -37,6 +37,7 @@ const WinnerTile = (props) => {
         <div style={{
           position: "relative",
           paddingTop: "20px",
+          marginLeft:5,
           display: "inline-block",
         }}>
 
@@ -48,7 +49,7 @@ const WinnerTile = (props) => {
             borderRadius: "8px",
             padding: "15px 15px 15px 15px",
             marginLeft: "20px",
-            textAlign: "center"
+            textAlign: "center",
 
 
           }}>
@@ -74,17 +75,33 @@ const WinnerTile = (props) => {
 
 
             <div style={{display:"inline-block"}}>
-              <h3 className={"fw-semi-bold"}>{props.user.name}</h3>
+              <h5 className={"fw-semi-bold"}>{props.user.name}</h5>
 
-              <div id="stats" className="row" style={{ paddingLeft: 5, paddingRight: 5 }}>
-                <div className="col">
-                  <p className="stat">108</p>
-                  <p className="label">Posts</p>
-                </div>
-                <div className="col">
-                  <p className="stat">457</p>
-                  <p className="label">Followers</p>
-                </div>
+              <div id="stats" className="row" style={{ marginLeft:"auto",
+              marginRight:"auto",display:"block",overflow:"initial" }}>
+                <Row style={{borderRadius:5,opacity:.6,backgroundColor:"#000",}}>
+                  <Col>
+                  <span className={"fw-bold"}>ID</span>
+                  </Col>
+
+ 
+                  <Col>
+                  <span>1234</span>
+                  </Col>
+
+                </Row>
+
+                <Row style={{borderRadius:5,opacity:.6,backgroundColor:"#000",marginTop:5}}>
+                  <Col>
+                  <span className={"fw-bold"}>Directs</span>
+                  </Col>
+
+ 
+                  <Col>
+                  <span>1234</span>
+                  </Col>
+
+                </Row>
 
               </div>
 

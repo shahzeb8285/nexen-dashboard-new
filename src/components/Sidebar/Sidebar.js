@@ -180,15 +180,15 @@ class Sidebar extends React.Component {
 
                     <div className="id">
                         <div className="id__header" >
-                            <h3>ID {this.props.user ? this.props.user.id : "0"}</h3>
+                            <h3>ID <span>{this.props.auth ? this.props.auth.userId : "0"}</span></h3>
                         </div>
                         <div className="eth">
                             <img src={eth} ></img>
                             <div className="value">
-                                <h4>3</h4>
+                                <h4> <span className="fa fa-group" style={{marginRight:5,color:"#6ed89c"}}> </span>3</h4>
+                                <h4> <span className="fa fa-dollar" style={{marginRight:5,color:"#6ed89c"}}> </span>123</h4>
 
-                                <h4>$123</h4>
-
+                                
                             </div>
                         </div>
                         <div className="id__btn">
@@ -386,7 +386,8 @@ function mapStateToProps(store) {
         sidebarStatic: store.navigation.sidebarStatic,
         alertsList: store.alerts.alertsList,
         activeItem: store.navigation.activeItem,
-        user: store.Web3Reducer.user
+        user: store.Web3Reducer.user,
+        auth:store.auth
 
     };
 }

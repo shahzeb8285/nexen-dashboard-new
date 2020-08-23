@@ -39,12 +39,19 @@ class Web3Provider extends React.Component {
 
 
   async componentDidMount() {
+    let userId =22
+    // this.setState({userId:parseInt(this.props.auth.userId)})
     await this.loadWeb3();
     await this.loadBlockchainData();
+
     if (!this.state.InitError) {
-      await this.initUsersFunds(2);
-      await this.initUser(2)
+      await this.initUsersFunds(userId);
+      await this.initUser(userId)
     }
+
+
+
+
 
 
 
@@ -56,7 +63,7 @@ class Web3Provider extends React.Component {
 
 
   showBuyLevelDialog(level){
-    this.setState({visibleBuyModal:true})
+    this.setState({visibleBuyModal:true,selectedLevel:level})
    
 
 
@@ -305,7 +312,6 @@ class Web3Provider extends React.Component {
           directIncome: web3.utils.fromWei(di.toString(), "ether"),
           recycleIncome: web3.utils.fromWei(ri.toString(), "ether"),
           levelIncome: web3.utils.fromWei(li.toString(), "ether"),
-          levelFund: "test",
           rewardIncome: web3.utils.fromWei(rewi.toString(), "ether")
         };
 
@@ -371,6 +377,9 @@ class Web3Provider extends React.Component {
   //Buy level
   buyLevel = (level, price, callback) => {
     // this.setState({ loading: true });
+
+
+    console.log("BUYLEVEL",level,"pricwe",price)
     this.state.mlm.methods.buyLevel(level)
       .send({ from: this.state.user.walletAddress, value: price })
       .once('receipt', (receipt) => {
@@ -549,7 +558,7 @@ class Web3Provider extends React.Component {
 
 function mapStateToProps(store) {
   return {
-
+    auth:store.auth
   };
 }
 

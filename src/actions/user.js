@@ -39,10 +39,11 @@ export function logoutUser() {
 }
 
 export function loginUser(creds) {
+    console.log("loginggg",creds)
     return (dispatch) => {
+        localStorage.setItem('userId', creds.userId)
 
         dispatch(receiveLogin({userId:creds.userId}));
-        localStorage.setItem('userId', creds.userId)
 
         // if (creds.email.length > 0 && creds.password.length > 0) {
         //     // localStorage.setItem('authenticated', true)

@@ -61833,10 +61833,78 @@
       "links": {},
       "address": "0xfF93b5d9E614737a9e16F548970a57daDa1386cd",
       "transactionHash": "0x9a47a13208a37edd7faca51098e326f3dbdf9c7919b7b7131f09ae65356efc7f"
+    },
+    "1598182794501": {
+      "events": {
+        "0xcc0bec1447060c88cdc5a739cf29cfa26c453574dd3f5b9e4dcc317d6401cb1c": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "addr",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "inviter",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "id",
+              "type": "uint256"
+            }
+          ],
+          "name": "Register",
+          "type": "event"
+        },
+        "0xa8703b4241c3a48b3b06bf05b142e39ac788380af7742a416263d67f99e5ea62": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "addr",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "upline",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "level",
+              "type": "uint8"
+            }
+          ],
+          "name": "BuyLevel",
+          "type": "event"
+        },
+        "0x94ea718a6517c74ee4da32e6297595705048e7f1ca05b3133069c756cff40421": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "_user",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "_level",
+              "type": "uint256"
+            }
+          ],
+          "name": "buyLevelEvent",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x2ce2721617B9D2eAe4b378B28959129f3045c48a",
+      "transactionHash": "0x2701f427507460b156dfca5d04e700b07ca594f1c3d37748491edc417bb53da1"
     }
   },
   "schemaVersion": "3.2.3",
-  "updatedAt": "2020-08-23T10:57:16.567Z",
+  "updatedAt": "2020-08-23T11:40:03.056Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}
