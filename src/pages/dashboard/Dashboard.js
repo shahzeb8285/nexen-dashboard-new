@@ -17,7 +17,8 @@ import Level from "./components/Level/Level";
 import {toast} from 'react-toastify';
 import UserTree from '../../components/Tree/UserTree'
 import WinnerTile from "./components/WinnerSlider/WinnerTile";
-import LinearWinnerTable from "./components/LinearWinnerTable/LinearWinnerTable"
+import LinearWinnerTable from "./components/LinearWinnerTable/LinearWinnerTable";
+import './Dashboard.scss'
 
 class Dashboard extends React.Component {
 
@@ -709,7 +710,7 @@ class Dashboard extends React.Component {
 
             </Col>
             <Col lg={4} xs={12} style={{ paddingTop: 5, marginTop: "15px" }}>
-              <Widget
+            <Widget
                 title={
                   <h4>
                     Our <span className="fw-semi-bold">Acheivements</span>
@@ -718,39 +719,59 @@ class Dashboard extends React.Component {
               >
                 <Col>
                   <Row>
-                    <h5 style={{ color: "yellow", fontWeight: "600" }}>
-                      All Participants
-                    </h5>
-                    <h5 style={{ color: "#72dd97", fontSize: "x-large" }}>
-                      123455
-                    </h5>
+                    <div className="participants-box">
+                    <h3>
+                      10000
+                    </h3>
+                    <h5 >
+                    All Participants
+                    </h5>      
+                    </div>
+
+                    
+                    
+                   
                   </Row>
 
                   <Row>
-                    <h5 style={{ color: "white", fontWeight: "600" }}>
-                      Joined in 24 Hours
-                    </h5>
-                    <h5 style={{ color: "#ff1616", fontSize: "x-large" }}>
-                      123455
-                    </h5>
+                    <div className="participants-box">
+                    <h3 >
+                      12345
+                      
+                    </h3>
+                    <h5 >
+                    Joined in 24 Hours
+                    </h5>                  
+                    </div>
+                    
+                    
+                   
                   </Row>
 
                   <Row>
-                    <h5 style={{ color: "yellow", fontWeight: "600" }}>
-                      Participants have earned ETH
+                    <div className="participants-box">
+                    <h3>
+                      12345
+                      
+                    </h3>
+                    <h5>
+                    Participants have earned ETH
                     </h5>
-                    <h5 style={{ color: "#b2ecef", fontSize: "x-large" }}>
-                      123455
-                    </h5>
+                    </div>
+                    
                   </Row>
 
                   <Row>
-                    <h5 style={{ color: "#10f171", fontWeight: "600" }}>
-                      Participants have earned USD
+                    <div className="participants-box">
+                    <h3>
+                    123455
+                      
+                    </h3>
+                    <h5>
+                    Participants have earned USD
                     </h5>
-                    <h5 style={{ color: "#f6c362", fontSize: "x-large" }}>
-                      123455
-                    </h5>
+                    </div>
+                   
                   </Row>
                 </Col>
               </Widget>
