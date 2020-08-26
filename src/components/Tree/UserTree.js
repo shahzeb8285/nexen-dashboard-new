@@ -24,8 +24,9 @@ export default class UserTree extends Component{
             lineColor={'green'}
             lineBorderRadius={'10px'}
             label={<div className="user">
-              
+              <a href="#">
               <img src={avatar}></img>
+              </a>
              <div className="user__id">
              <h6>Id 1</h6>
              </div>
@@ -37,8 +38,10 @@ export default class UserTree extends Component{
           >
             <TreeNode label={
             <div className="user">
-              
-            <img src={avatar}></img>
+              <a href="#">
+              <img src={avatar}></img>
+              </a>
+         
            <div className="user__id1">
            <h6>Id 1</h6>
            </div>
@@ -50,7 +53,9 @@ export default class UserTree extends Component{
             <TreeNode label={ 
            <div className="user">
               
-           <img src={avatar}></img>
+              <a href="#">
+              <img src={avatar}></img>
+              </a>
           <div className="user__id2">
           <h6>Id 1</h6>
           </div>
@@ -65,7 +70,9 @@ export default class UserTree extends Component{
             <TreeNode label={ 
             <div className="user">
               
-            <img src={avatar}></img>
+              <a href="#">
+              <img src={avatar}></img>
+              </a>
            <div className="user__id3">
            <h6>Id 1</h6>
            </div>
@@ -78,7 +85,9 @@ export default class UserTree extends Component{
             <TreeNode label={
               <div className="user">
               
+              <a href="#">
               <img src={avatar}></img>
+              </a>
              <div className="user__id4">
              <h6>Id 1</h6>
              </div>
