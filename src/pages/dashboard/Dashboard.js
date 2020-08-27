@@ -804,7 +804,7 @@ class Dashboard extends React.Component {
 
 
 
-                <Col lg={{ size: 4, offset: 0 }} xs={6} style={{ paddingTop: 5 }}>
+                <Col lg={{ size: 4 }} xs={6} style={{ paddingTop: 5 , marginBottom:10}}>
                   <InfoTile
                     primaryTitle={"Direct Income"}
                     secondaryTitle={"Total Direct"}
@@ -816,7 +816,7 @@ class Dashboard extends React.Component {
 
                   />
                 </Col>
-                <Col lg={{ size: 4, offset: 0 }} xs={6} style={{ paddingTop: 5 }}>
+                <Col lg={{ size: 4, offset: 0 }} xs={6} style={{ paddingTop: 5 ,marginBottom:10}}>
                   <InfoTile
 
                     primaryTitle={"Reward Income"}
@@ -836,7 +836,7 @@ class Dashboard extends React.Component {
 
 
 
-                <Col lg={{ size: 4, offset: 0 }} xs={6} style={{ paddingTop: 5 }}>
+                <Col lg={{ size: 4, offset: 0 }} xs={6} style={{ paddingTop: 5,marginBottom:10 }}>
                   <InfoTile
 
                     primaryTitle={"Level Income"}
@@ -851,7 +851,7 @@ class Dashboard extends React.Component {
 
 
                 </Col>
-                <Col lg={{ size: 4, offset: 0 }} xs={6} style={{ paddingTop: 5 }}>
+                <Col lg={{ size: 4, offset: 0 }} xs={6} style={{ paddingTop: 5 ,marginBottom:10}}>
 
                   <InfoTile
 
@@ -872,7 +872,7 @@ class Dashboard extends React.Component {
                 </Col>
 
 
-                <Col lg={{ size: 4, offset: 0 }} xs={6} style={{ paddingTop: 5 }}>
+                <Col lg={{ size: 4, offset: 0 }} xs={6} style={{ paddingTop: 5,marginBottom:10 }}>
                   <InfoTile
 
                     primaryTitle={"Level Fund"}
@@ -888,7 +888,7 @@ class Dashboard extends React.Component {
 
                 </Col>
 
-                <Col lg={{ size: 4, offset: 0 }} xs={6} style={{ paddingTop: 5 }}>
+                <Col lg={{ size: 4, offset: 0 }} xs={6} style={{ paddingTop: 5,marginBottom:10 }}>
                   <InfoTile
 
                     primaryTitle={"Recycle Fund"}
